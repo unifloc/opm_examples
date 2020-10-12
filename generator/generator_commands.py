@@ -133,14 +133,14 @@ class DataParser:
                     i += 1
                 keyword_start_flag = self.keyword_read(keyword)
             elif keyword_start_flag and keyword == 'WCONPROD':
-                for prod in self.prod_names:
-                    self.create_wconprod(prod)
+                for prod, q_oil in zip(self.prod_names, self.q_oil):
+                    self.create_wconprod(prod, q_oil)
                     self.content.insert(i, self.wconprod)
                     i += 1
                 keyword_start_flag = self.keyword_read(keyword)
             elif keyword_start_flag and keyword == 'WCONINJE':
-                for inj in self.inj_names:
-                    self.create_wconinje(inj)
+                for inj, inj_bhp in zip(self.inj_names, self.inj_bhp):
+                    self.create_wconinje(inj, inj_bhp)
                     self.content.insert(i, self.wconinje)
                     i += 1
                 keyword_start_flag = self.keyword_read(keyword)
@@ -157,7 +157,7 @@ class DataParser:
         return keyword_start_flag
 
     def create_tops(self):
-        self.tops_dim = str(self.nx*self.ny) + '*8325 /'  # later we can change this depth, so now is constant
+        self.tops_dim = str(self.nx*self.ny) + '*2500 /'  # later we can change this depth, so now is constant
 
     def create_start_date(self):
         self.start = self.start_date + ' /'
@@ -195,11 +195,11 @@ class DataParser:
     def create_compdat(self, name, x, y, z1, z2, skin):
         self.compdat = name + ' ' + str(x) + ' ' + str(y) + ' ' + str(z1) + ' ' + str(z2) + ' OPEN	1*	1*	0.5  1* ' + str(skin) + ' /'
 
-    def create_wconprod(self, name):
-        self.wconprod = name + ' OPEN ORAT ' + str(self.q_oil) + ' 4* 230 /'
+    def create_wconprod(self, name, q_oil):
+        self.wconprod = name + ' OPEN ORAT ' + str(q_oil) + ' 4* 230 /'
 
-    def create_wconinje(self, name):
-        self.wconinje = name + ' WAT OPEN BHP ' + str(self.inj_bhp) + ' 1* /'
+    def create_wconinje(self, name, inj_bhp):
+        self.wconinje = name + ' WAT OPEN BHP ' + str(inj_bhp) + ' 1* /'
 
     def create_TSTEP(self):
         self.TSTEP = str(self.mounths) + '*30 /'

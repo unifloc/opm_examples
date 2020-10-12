@@ -177,10 +177,9 @@ SGOF
 DENSITY
 -- Density (lb per ft³) at surface cond. of 
 -- oil, water and gas, respectively (in that order)
-
 -- Using values from Norne:
 -- In METRIC units:
-      859.5 1033.0 0.854 /
+
 -- In FIELD units:
 --      	53.66 64.49 0.0533 /
 
