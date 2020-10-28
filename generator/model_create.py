@@ -148,7 +148,7 @@ class ModelGenerator:
         self.create_result(name=name, keys=keys)
         self.read_result(name=result_name)
         self.make_plot()
-        #self.export_snapshots(name=name)
+        self.export_snapshots(name=name)
 
     def calculate_prepared_model(self, name, result_name, keys):
         self.calculate_file(name)
