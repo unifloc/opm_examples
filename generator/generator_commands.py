@@ -10,7 +10,8 @@ class DataParser:
 
     """
     def __init__(self, init_file, start_date, mounths,  nx, ny, nz, dx, dy, dz, por, permx, permy, permz, prod_names, prod_xs,
-                 prod_ys, prod_z1s, prod_z2s, q_oil, inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, inj_bhp, skin, density):
+                 prod_ys, prod_z1s, prod_z2s, q_oil, inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, inj_bhp, skin, density, p_depth,
+                 p_init, o_w_contact, pc_woc, g_o_contact, pc_goc, tops_depth, rezim, prod_bhp):
         self.content = init_file.readlines()
         'Удалим переносы в конце строк'
         self.content = [line.rstrip('\n') for line in self.content]
@@ -27,6 +28,7 @@ class DataParser:
         self.permy_dim = None
         self.permz_dim = None
         self.den = None
+        self.equil = None
         self.welspecs = None
         self.compdat = None
         self.wconprod = None
@@ -39,17 +41,26 @@ class DataParser:
         self.dx = dx
         self.dy = dy
         self.dz = dz
+        self.tops_depth = tops_depth
         self.por = por
         self.permx = permx
         self.permy = permy
         self.permz = permz
         self.density = density
+        self.p_depth = p_depth
+        self.p_init = p_init
+        self.o_w_contact = o_w_contact
+        self.pc_woc = pc_woc
+        self.g_o_contact = g_o_contact
+        self.pc_goc = pc_goc
         self.prod_names = prod_names
+        self.rezim = rezim
         self.prod_xs = prod_xs
         self.prod_ys = prod_ys
         self.prod_z1s = prod_z1s
         self.prod_z2s = prod_z2s
         self.q_oil = q_oil
+        self.prod_bhp = prod_bhp
         self.inj_names = inj_names
         self.inj_xs = inj_xs
         self.inj_ys = inj_ys
@@ -118,6 +129,10 @@ class DataParser:
                 self.create_density()
                 self.content[i] = self.den
                 keyword_start_flag = self.keyword_read(keyword)
+            elif keyword_start_flag and keyword == 'EQUIL':
+                self.create_equil()
+                self.content[i] = self.equil
+                keyword_start_flag = self.keyword_read(keyword)
             elif keyword_start_flag and keyword == 'WELSPECS':
                 for prod, x, y, fluid in zip(self.all_well_names, self.all_well_xs,
                                              self.all_well_ys, self.all_well_fluid):
@@ -133,8 +148,8 @@ class DataParser:
                     i += 1
                 keyword_start_flag = self.keyword_read(keyword)
             elif keyword_start_flag and keyword == 'WCONPROD':
-                for prod, q_oil in zip(self.prod_names, self.q_oil):
-                    self.create_wconprod(prod, q_oil)
+                for prod, rezim, q_oil, prod_bhp in zip(self.prod_names, self.rezim, self.q_oil, self.prod_bhp):
+                    self.create_wconprod(prod, rezim, q_oil, prod_bhp)
                     self.content.insert(i, self.wconprod)
                     i += 1
                 keyword_start_flag = self.keyword_read(keyword)
@@ -157,7 +172,7 @@ class DataParser:
         return keyword_start_flag
 
     def create_tops(self):
-        self.tops_dim = str(self.nx*self.ny) + '*2500 /'  # later we can change this depth, so now is constant
+        self.tops_dim = str(self.nx*self.ny) + '*'+ str(self.tops_depth) + ' /'  
 
     def create_start_date(self):
         self.start = self.start_date + ' /'
@@ -188,6 +203,9 @@ class DataParser:
 
     def create_density(self):
         self.den = str(self.density[0]) + ' ' + str(self.density[1]) + ' ' + str(self.density[2]) + ' /'
+        
+    def create_equil(self):
+        self.equil = str(self.p_depth) + ' ' + str(self.p_init) + ' ' + str(self.o_w_contact) + ' ' + str(self.pc_woc) + ' ' + str(self.g_o_contact) + ' ' + str(self.pc_goc) + ' ' +' 1 1* 1*/'
 
     def create_welspecs(self, name, x, y, fluid):
         self.welspecs = name + ' G1 ' + str(x) + ' ' + str(y) + ' 8400 ' + fluid + ' /'
@@ -195,8 +213,8 @@ class DataParser:
     def create_compdat(self, name, x, y, z1, z2, skin):
         self.compdat = name + ' ' + str(x) + ' ' + str(y) + ' ' + str(z1) + ' ' + str(z2) + ' OPEN	1*	1*	0.5  1* ' + str(skin) + ' /'
 
-    def create_wconprod(self, name, q_oil):
-        self.wconprod = name + ' OPEN ORAT ' + str(q_oil) + ' 4* 230 /'
+    def create_wconprod(self, name, rezim, q_oil, prod_bhp):
+        self.wconprod = name + ' OPEN ' + rezim + ' ' + str(q_oil) + ' 4* ' + str(prod_bhp) + ' /'
 
     def create_wconinje(self, name, inj_bhp):
         self.wconinje = name + ' WAT OPEN BHP ' + str(inj_bhp) + ' 1* /'

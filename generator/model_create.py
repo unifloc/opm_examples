@@ -28,7 +28,8 @@ class ModelGenerator:
 
     def __init__(self, init_file_name='RIENM1_INIT.DATA', start_date="1 'SEP' 2019", mounths = 24, nx=100, ny=100, nz=5, dx=500, dy=500, dz=20, por=0.3, permx=100,
                  permy=100, permz=10, prod_names=None, prod_xs=None, prod_ys=None, prod_z1s=None, prod_z2s=None, prod_q_oil=None,
-                 inj_names=None, inj_xs=None, inj_ys=None, inj_z1s=None, inj_z2s=None, inj_bhp=None, skin=None, density=None):
+                 inj_names=None, inj_xs=None, inj_ys=None, inj_z1s=None, inj_z2s=None, inj_bhp=None, skin=None, density=None,
+                 p_depth = 2510, p_init = 320, o_w_contact = 2600, pc_woc = 0, g_o_contact = 2500, pc_goc = 0, tops_depth = 2500, rezim = 'ORAT', prod_bhp = None):
         self.start_date = start_date
         self.mounths = mounths
         self.nx = nx
@@ -37,10 +38,17 @@ class ModelGenerator:
         self.dx = dx
         self.dy = dy
         self.dz = dz
+        self.tops_depth = tops_depth
         self.por = por
         self.permx = permx
         self.permy = permy
         self.permz = permz
+        self.p_depth = p_depth
+        self.p_init = p_init
+        self.o_w_contact = o_w_contact
+        self.pc_woc = pc_woc
+        self.g_o_contact = g_o_contact
+        self.pc_goc = pc_goc
 
         if prod_ys is None:
             prod_ys = [1, 3, 5, 7]
@@ -54,6 +62,8 @@ class ModelGenerator:
             prod_z2s = [2, 2, 2, 2]
         if prod_q_oil is None:
             prod_q_oil = [100, 100, 100, 100]
+        if prod_bhp is None:
+            prod_bhp = [150, 150, 150, 150]
         if inj_ys is None:
             inj_ys = [1]
         if inj_xs is None:
@@ -72,11 +82,13 @@ class ModelGenerator:
             skin = [0, 0, 0, 0, 0]
 
         self.prod_names = prod_names
+        self.rezim = rezim
         self.prod_xs = prod_xs
         self.prod_ys = prod_ys
         self.prod_z1s = prod_z1s
         self.prod_z2s = prod_z2s
         self.q_oil = prod_q_oil
+        self.prod_bhp = prod_bhp
         self.inj_ys = inj_ys
         self.inj_xs = inj_xs
         self.inj_names = inj_names
@@ -94,13 +106,16 @@ class ModelGenerator:
         self.initialize_parser(self.init_file_name, self.start_date, self.mounths, self.nx, self.ny, self.nz, self.dx, self.dy, self.dz, self.por,
                                self.permx, self.permy, self.permz, self.prod_names, self.prod_xs, self.prod_ys,
                                self.prod_z1s, self.prod_z2s, self.q_oil, self.inj_names, self.inj_xs, self.inj_ys, self.inj_z1s,
-                               self.inj_z2s, self.inj_bhp, self.skin, self.density)
+                               self.inj_z2s, self.inj_bhp, self.skin, self.density, self.p_depth, self.p_init, self.o_w_contact, self.pc_woc, 
+                               self.g_o_contact, self.pc_goc, self.tops_depth, self.rezim, self.prod_bhp)
 
     def initialize_parser(self, init_file_name, start_date, mounths, nx, ny, nz, dx, dy, dz, por, permx, permy, permz, prod_names, prod_xs,
-                          prod_ys, prod_z1s, prod_z2s, q_oil, inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, inj_bhp, skin, density):
+                          prod_ys, prod_z1s, prod_z2s, q_oil, inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, inj_bhp, skin, density, p_depth, 
+                          p_init, o_w_contact, pc_woc, g_o_contact, pc_goc, tops_depth, rezim, prod_bhp):
         init_file = open(init_file_name)
         self.parser = DataParser(init_file, start_date, mounths, nx, ny, nz, dx, dy, dz, por, permx, permy, permz, prod_names, prod_xs,
-                                 prod_ys, prod_z1s, prod_z2s, q_oil, inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, inj_bhp, skin, density)
+                                 prod_ys, prod_z1s, prod_z2s, q_oil, inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, inj_bhp, skin, density, p_depth, 
+                                 p_init, o_w_contact, pc_woc, g_o_contact, pc_goc, tops_depth, rezim, prod_bhp)
 
     def filter_initial_data(self):
         if max(self.prod_xs) > self.nx:
@@ -122,6 +137,7 @@ class ModelGenerator:
         self.parser.parse_file('PERMY')
         self.parser.parse_file('PERMZ')
         self.parser.parse_file('DENSITY')
+        self.parser.parse_file('EQUIL')
         self.parser.parse_file('WELSPECS')
         self.parser.parse_file('COMPDAT')
         self.parser.parse_file('WCONPROD')
@@ -132,7 +148,7 @@ class ModelGenerator:
         self.create_result(name=name, keys=keys)
         self.read_result(name=result_name)
         self.make_plot()
-        self.export_snapshots(name=name)
+        #self.export_snapshots(name=name)
 
     def calculate_prepared_model(self, name, result_name, keys):
         self.calculate_file(name)
@@ -152,7 +168,8 @@ class ModelGenerator:
         inj_z2s = [self.nz]
         self.initialize_parser(self.init_file_name, self.start_date, self.mounths, self.nx, self.ny, self.nz, self.dx, self.dy, self.dz, self.por,
                                self.permx, self.permy, self.permz, self.prod_names, prod_xs, prod_ys, prod_z1s,
-                               prod_z2s, self.q_oil, self.inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, self.inj_bhp, self.skin, self.density)
+                               prod_z2s, self.q_oil, self.inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, self.inj_bhp, self.skin, self.density, self.p_depth, 
+                               self.p_init, self.o_w_contact, self.pc_woc, self.g_o_contact, self.pc_goc, self.tops_depth, self.rezim, self.prod_bhp)
         self.create_model(name='5_SPOT', result_name='5_SPOT_RESULT', keys=["WOPR:*", "WWPR:*", "WLPR:*",
                                                                             "WGPR:*", "WWIR:*", "WGOR:*", "WBHP:*",
                                                                             "WOPT:*", "WWPT:*", "WLPT:*", "WGPT:*",
@@ -160,17 +177,17 @@ class ModelGenerator:
                                                                             "FWIT"])
 
     def save_file(self, name):
-        with open(name + '.DATA', "w") as file:
+        with open('model_folder/'+ name + '.DATA', "w") as file:
             for line in self.parser.content:
                 print(line, file=file)
 
     @staticmethod
     def calculate_file(name):
-        os.system("flow %s.DATA" % name)
+        os.system("flow model_folder/%s.DATA" % name)
 
     @staticmethod
     def create_result(name, keys):
-        summary = EclSum('%s.DATA' % name)
+        summary = EclSum('model_folder/%s.DATA' % name)
         dates = summary.dates
         results = []
         all_keys = []
@@ -190,11 +207,11 @@ class ModelGenerator:
 
         result_df = pd.DataFrame(data=np.array(results).T, index=dates, columns=all_keys)
         result_df.index.name = 'Time'
-        result_df.to_csv('%s_RESULT.csv' % name)
+        result_df.to_csv('csv_folder/%s_RESULT.csv' % name)
         print('%s_RESULT.csv is created' % name)
 
     def read_result(self, name):
-        self.result_df = pd.read_csv('%s.csv' % name, parse_dates=[0], index_col=[0])
+        self.result_df = pd.read_csv('csv_folder/%s.csv' % name, parse_dates=[0], index_col=[0])
         print('%s.csv is read' % name)
 
     def make_plot(self, df=None, parameters=None, mode='markers'):
@@ -217,9 +234,29 @@ class ModelGenerator:
         self.fig.update_layout(title=go.layout.Title(text='Динамика показателей месторождения'))
 
         print('График построен и сохранен в атрибутах класса')
+        
+    def summ_plot(self, parameters=None, mode='markers'):
+        directory = "csv_folder/"
+        self.fig = go.Figure()
+        for file in os.listdir(directory):
+            df = pd.read_csv('csv_folder/%s' % file, parse_dates=[0], index_col=[0])
+
+            if parameters is None:
+                parameters = df.columns
+                
+            for par in parameters:
+                self.fig.add_trace(go.Scatter(
+                    x=df.index,
+                    y=df[par],
+                    mode=mode,
+                    name='par:' + par + '; '+ 'model:' + file))
+
+        self.fig.update_xaxes(title='Дата')
+        self.fig.update_layout(title=go.layout.Title(text='Динамика показателей по моделям'))
+
 
     def export_snapshots(self, name):
-        process = subprocess.Popen('exec ResInsight --case "%s.EGRID"' % name, shell=True)
+        process = subprocess.Popen('exec ResInsight --case "model_folder/%s.EGRID"' % name, shell=True)
         time.sleep(5)
         resinsight = rips.Instance.find()
         case = resinsight.project.cases()[0]
@@ -232,7 +269,7 @@ class ModelGenerator:
         dirname = os.path.join(folder_name, f"snapshots/{name}")
         self.dir = dirname
         if os.path.exists(dirname) is False:
-            os.mkdir(f"snapshots/{name}")
+            os.mkdir(f"model_folder/snapshots/{name}")
         shutil.rmtree(dirname)
 
         print("Exporting to folder: " + dirname)
