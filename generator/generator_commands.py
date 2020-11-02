@@ -9,9 +9,9 @@ class DataParser:
     """
 
     """
-    def __init__(self, init_file, start_date, mounths,  nx, ny, nz, dx, dy, dz, por, permx, permy, permz, prod_names, prod_xs,
+    def __init__(self, init_file, start_date, mounths, days, nx, ny, nz, dx, dy, dz, por, permx, permy, permz, prod_names, prod_xs,
                  prod_ys, prod_z1s, prod_z2s, q_oil, inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, inj_bhp, skin, density, p_depth,
-                 p_init, o_w_contact, pc_woc, g_o_contact, pc_goc, tops_depth, rezim, prod_bhp):
+                 p_init, o_w_contact, pc_woc, g_o_contact, pc_goc, tops_depth, rezim, prod_bhp, horizontal, y_stop, only_prod):
         self.content = init_file.readlines()
         'Удалим переносы в конце строк'
         self.content = [line.rstrip('\n') for line in self.content]
@@ -35,6 +35,7 @@ class DataParser:
         self.wconinje = None
         self.start_date = start_date
         self.mounths = mounths
+        self.days = days
         self.nx = nx
         self.ny = ny
         self.nz = nz
@@ -67,13 +68,22 @@ class DataParser:
         self.inj_z1s = inj_z1s
         self.inj_z2s = inj_z2s
         self.inj_bhp = inj_bhp
-        self.all_well_names = self.prod_names + self.inj_names
-        self.all_well_xs = self.prod_xs + self.inj_xs
-        self.all_well_ys = self.prod_ys + self.inj_ys
-        self.all_well_z1s = self.prod_z1s + self.inj_z1s
-        self.all_well_z2s = self.prod_z2s + self.inj_z2s
+        if not only_prod:
+            self.all_well_names = self.prod_names + self.inj_names
+            self.all_well_xs = self.prod_xs + self.inj_xs
+            self.all_well_ys = self.prod_ys + self.inj_ys
+            self.all_well_z1s = self.prod_z1s + self.inj_z1s
+            self.all_well_z2s = self.prod_z2s + self.inj_z2s
+        else:
+            self.all_well_names = self.prod_names
+            self.all_well_xs = self.prod_xs
+            self.all_well_ys = self.prod_ys 
+            self.all_well_z1s = self.prod_z1s
+            self.all_well_z2s = self.prod_z2s
         self.all_well_fluid = ['OIL' for _ in range(len(self.prod_names))] + ['WAT' for _ in range(len(self.inj_names))]
         self.skin = skin
+        self.horizontal = horizontal
+        self.y_stop = y_stop
 
     def parse_file(self, keyword):
         keyword_start_flag = False
@@ -141,9 +151,9 @@ class DataParser:
                     i += 1
                 keyword_start_flag = self.keyword_read(keyword)
             elif keyword_start_flag and keyword == 'COMPDAT':
-                for well, x, y, z1, z2, skin in zip(self.all_well_names, self.all_well_xs, self.all_well_ys,
-                                              self.all_well_z1s, self.all_well_z2s, self.skin):
-                    self.create_compdat(well, x, y, z1, z2, skin)
+                for well, x, y, z1, z2, skin, horizontal, y_stop in zip(self.all_well_names, self.all_well_xs, self.all_well_ys,
+                                              self.all_well_z1s, self.all_well_z2s, self.skin, self.horizontal, self.y_stop):
+                    self.create_compdat(well, x, y, z1, z2, skin, horizontal, y_stop)
                     self.content.insert(i, self.compdat)
                     i += 1
                 keyword_start_flag = self.keyword_read(keyword)
@@ -210,8 +220,13 @@ class DataParser:
     def create_welspecs(self, name, x, y, fluid):
         self.welspecs = name + ' G1 ' + str(x) + ' ' + str(y) + ' 8400 ' + fluid + ' /'
 
-    def create_compdat(self, name, x, y, z1, z2, skin):
-        self.compdat = name + ' ' + str(x) + ' ' + str(y) + ' ' + str(z1) + ' ' + str(z2) + ' OPEN	1*	1*	0.5  1* ' + str(skin) + ' /'
+    def create_compdat(self, name, x, y, z1, z2, skin, horizontal, y_stop):
+        if horizontal:
+            #self.compdat = name + ' ' + '2*' + ' ' + str(z1) + ' ' + str(z2) + ' OPEN	1*	1*	0.5  1* ' + str(skin) + ' /\n'
+            for i in range(y+1, y_stop+1):
+                  self.compdat += name + ' ' + str(x) + ' ' + str(i) + ' ' + str(z2) + ' ' + str(z2) + ' OPEN	1*	1*	0.5  1* ' + str(skin) + ' /\n'
+        else:
+            self.compdat = name + ' ' + str(x) + ' ' + str(y) + ' ' + str(z1) + ' ' + str(z2) + ' OPEN	1*	1*	0.5  1* ' + str(skin) + ' /'
 
     def create_wconprod(self, name, rezim, q_oil, prod_bhp):
         self.wconprod = name + ' OPEN ' + rezim + ' ' + str(q_oil) + ' 4* ' + str(prod_bhp) + ' /'
@@ -220,4 +235,4 @@ class DataParser:
         self.wconinje = name + ' WAT OPEN BHP ' + str(inj_bhp) + ' 1* /'
 
     def create_TSTEP(self):
-        self.TSTEP = str(self.mounths) + '*30 /'
+        self.TSTEP = str(self.mounths) + f'*{self.days} /'

@@ -554,7 +554,7 @@ I1 WAT OPEN BHP 400 1* /
 
 
 TSTEP
-24*30 /
+240*30 /
 
 
 END

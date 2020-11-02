@@ -26,12 +26,14 @@ class ModelGenerator:
 
     """
 
-    def __init__(self, init_file_name='RIENM1_INIT.DATA', start_date="1 'SEP' 2019", mounths = 24, nx=100, ny=100, nz=5, dx=500, dy=500, dz=20, por=0.3, permx=100,
+    def __init__(self, init_file_name='RIENM1_INIT.DATA', start_date="1 'SEP' 2019", mounths = 24, days = 30, nx=100, ny=100, nz=5, dx=500, dy=500, dz=20, por=0.3, permx=100,
                  permy=100, permz=10, prod_names=None, prod_xs=None, prod_ys=None, prod_z1s=None, prod_z2s=None, prod_q_oil=None,
                  inj_names=None, inj_xs=None, inj_ys=None, inj_z1s=None, inj_z2s=None, inj_bhp=None, skin=None, density=None,
-                 p_depth = 2510, p_init = 320, o_w_contact = 2600, pc_woc = 0, g_o_contact = 2500, pc_goc = 0, tops_depth = 2500, rezim = 'ORAT', prod_bhp = None):
+                 p_depth = 2510, p_init = 320, o_w_contact = 2600, pc_woc = 0, g_o_contact = 2500, pc_goc = 0, tops_depth = 2500, rezim = 'ORAT', prod_bhp = None, horizontal = None, y_stop = None, only_prod = False):
+        self.only_prod = only_prod
         self.start_date = start_date
         self.mounths = mounths
+        self.days = days
         self.nx = nx
         self.ny = ny
         self.nz = nz
@@ -80,6 +82,10 @@ class ModelGenerator:
             density =[860, 1010, 0.9]
         if skin is None:
             skin = [0, 0, 0, 0, 0]
+        if horizontal is None:
+            horizontal = [False, False, False, False]
+        if y_stop is None:
+            y_stop = [None, None, None, None]
 
         self.prod_names = prod_names
         self.rezim = rezim
@@ -97,25 +103,27 @@ class ModelGenerator:
         self.inj_bhp = inj_bhp
         self.skin = skin
         self.density = density
+        self.y_stop = y_stop
+        self.horizontal = horizontal
         self.result_df = None
         self.fig = None
         self.dir = None
         self.init_file_name = init_file_name
         self.filter_initial_data()
         self.parser = None
-        self.initialize_parser(self.init_file_name, self.start_date, self.mounths, self.nx, self.ny, self.nz, self.dx, self.dy, self.dz, self.por,
+        self.initialize_parser(self.init_file_name, self.start_date, self.mounths, self.days, self.nx, self.ny, self.nz, self.dx, self.dy, self.dz, self.por,
                                self.permx, self.permy, self.permz, self.prod_names, self.prod_xs, self.prod_ys,
                                self.prod_z1s, self.prod_z2s, self.q_oil, self.inj_names, self.inj_xs, self.inj_ys, self.inj_z1s,
                                self.inj_z2s, self.inj_bhp, self.skin, self.density, self.p_depth, self.p_init, self.o_w_contact, self.pc_woc, 
-                               self.g_o_contact, self.pc_goc, self.tops_depth, self.rezim, self.prod_bhp)
+                               self.g_o_contact, self.pc_goc, self.tops_depth, self.rezim, self.prod_bhp, self.horizontal, self.y_stop, self.only_prod)
 
-    def initialize_parser(self, init_file_name, start_date, mounths, nx, ny, nz, dx, dy, dz, por, permx, permy, permz, prod_names, prod_xs,
+    def initialize_parser(self, init_file_name, start_date, mounths, days, nx, ny, nz, dx, dy, dz, por, permx, permy, permz, prod_names, prod_xs,
                           prod_ys, prod_z1s, prod_z2s, q_oil, inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, inj_bhp, skin, density, p_depth, 
-                          p_init, o_w_contact, pc_woc, g_o_contact, pc_goc, tops_depth, rezim, prod_bhp):
+                          p_init, o_w_contact, pc_woc, g_o_contact, pc_goc, tops_depth, rezim, prod_bhp, horizontal, y_stop, only_prod):
         init_file = open(init_file_name)
-        self.parser = DataParser(init_file, start_date, mounths, nx, ny, nz, dx, dy, dz, por, permx, permy, permz, prod_names, prod_xs,
+        self.parser = DataParser(init_file, start_date, mounths, days, nx, ny, nz, dx, dy, dz, por, permx, permy, permz, prod_names, prod_xs,
                                  prod_ys, prod_z1s, prod_z2s, q_oil, inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, inj_bhp, skin, density, p_depth, 
-                                 p_init, o_w_contact, pc_woc, g_o_contact, pc_goc, tops_depth, rezim, prod_bhp)
+                                 p_init, o_w_contact, pc_woc, g_o_contact, pc_goc, tops_depth, rezim, prod_bhp, horizontal, y_stop, only_prod)
 
     def filter_initial_data(self):
         if max(self.prod_xs) > self.nx:
@@ -141,7 +149,8 @@ class ModelGenerator:
         self.parser.parse_file('WELSPECS')
         self.parser.parse_file('COMPDAT')
         self.parser.parse_file('WCONPROD')
-        self.parser.parse_file('WCONINJE')
+        if not self.only_prod:
+            self.parser.parse_file('WCONINJE')
         self.parser.parse_file('TSTEP')
         self.save_file(name=name)
         self.calculate_file(name)
@@ -166,10 +175,10 @@ class ModelGenerator:
         inj_ys = [int(self.ny/2)]
         inj_z1s = [1]
         inj_z2s = [self.nz]
-        self.initialize_parser(self.init_file_name, self.start_date, self.mounths, self.nx, self.ny, self.nz, self.dx, self.dy, self.dz, self.por,
+        self.initialize_parser(self.init_file_name, self.start_date, self.mounths, self.days, self.nx, self.ny, self.nz, self.dx, self.dy, self.dz, self.por,
                                self.permx, self.permy, self.permz, self.prod_names, prod_xs, prod_ys, prod_z1s,
                                prod_z2s, self.q_oil, self.inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, self.inj_bhp, self.skin, self.density, self.p_depth, 
-                               self.p_init, self.o_w_contact, self.pc_woc, self.g_o_contact, self.pc_goc, self.tops_depth, self.rezim, self.prod_bhp)
+                               self.p_init, self.o_w_contact, self.pc_woc, self.g_o_contact, self.pc_goc, self.tops_depth, self.rezim, self.prod_bhp, self.horizontal, self.y_stop, self.only_prod)
         self.create_model(name='5_SPOT', result_name='5_SPOT_RESULT', keys=["WOPR:*", "WWPR:*", "WLPR:*",
                                                                             "WGPR:*", "WWIR:*", "WGOR:*", "WBHP:*",
                                                                             "WOPT:*", "WWPT:*", "WLPT:*", "WGPT:*",
