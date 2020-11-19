@@ -11,7 +11,9 @@ class DataParser:
     """
     def __init__(self, init_file, start_date, mounths, days, nx, ny, nz, dx, dy, dz, por, permx, permy, permz, prod_names, prod_xs,
                  prod_ys, prod_z1s, prod_z2s, q_oil, inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, inj_bhp, skin, density, p_depth,
-                 p_init, o_w_contact, pc_woc, g_o_contact, pc_goc, tops_depth, rezim, prod_bhp, horizontal, y_stop, only_prod):
+                 p_init, o_w_contact, pc_woc, g_o_contact, pc_goc, tops_depth, rezim, prod_bhp, horizontal, y_stop, only_prod,
+                 lgr, lx, ly, cells_c):
+        
         self.content = init_file.readlines()
         'Удалим переносы в конце строк'
         self.content = [line.rstrip('\n') for line in self.content]
@@ -84,6 +86,10 @@ class DataParser:
         self.skin = skin
         self.horizontal = horizontal
         self.y_stop = y_stop
+        self.lgr = lgr 
+        self.lx = lx
+        self.ly = ly
+        self.cells_c = cells_c
 
     def parse_file(self, keyword):
         keyword_start_flag = False
@@ -105,7 +111,7 @@ class DataParser:
                 keyword_start_flag = self.keyword_read(keyword)
             elif keyword_start_flag and keyword == 'DX':
                 self.create_dx_dim()
-                self.content[i] = self.dx_dim
+                self.content[i] = self.dx_dim 
                 keyword_start_flag = self.keyword_read(keyword)
             elif keyword_start_flag and keyword == 'DY':
                 self.create_dy_dim()
@@ -180,6 +186,21 @@ class DataParser:
         print('%s written' % keyword)
         keyword_start_flag = False
         return keyword_start_flag
+    
+    @staticmethod
+    def setca(nx, lx, s):
+        k = 1
+        l = 0
+        while abs(l-lx) > 10:
+            k += 0.001
+            n = round((nx-s)/2)
+            l = 8 + 2*(8*k*(k**n-1)/(k-1))
+            if abs(l-lx) < 10:
+                x = []
+                for i in range(1, n+1):
+                    x.append(round(8*k**i))
+                x = x[::-1] + [8]*s + x
+                return x
 
     def create_tops(self):
         self.tops_dim = str(self.nx*self.ny) + '*'+ str(self.tops_depth) + ' /'  
@@ -191,13 +212,29 @@ class DataParser:
         self.dimens = str(self.nx) + ' ' + str(self.ny) + ' ' + str(self.nz) + ' /'
 
     def create_dx_dim(self):
-        self.dx_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.dx) + ' /'
+        if self.lgr:
+            dx_lgr = self.setca(self.nx, self.lx, self.cells_c)
+            self.dx_dim = str(dx_lgr[0]) + ' \n'
+            for i in range(2, self.nx + 1):    
+                self.dx_dim += str(dx_lgr[i-1]) + ' \n'
+            self.dx_dim = self.dx_dim*self.nx
+            self.dx_dim += '/\n'
+        else:
+            self.dx_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.dx) + ' /'
 
     def create_dy_dim(self):
-        self.dy_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.dy) + ' /'
+        if self.lgr:
+            dy_lgr = self.setca(self.ny, self.ly, self.cells_c)
+            self.dy_dim = ''
+            for i in range(1, self.ny + 1):    
+                dim = str(dy_lgr[i-1]) + ' \n'
+                self.dy_dim += dim*self.ny
+            self.dy_dim += '/\n'
+        else:
+            self.dy_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.dy) + ' /'
 
     def create_dz_dim(self):
-        self.dz_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.dz) + ' /'
+            self.dz_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.dz) + ' /'
 
     def create_porosity(self):
         self.por_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.por) + ' /'
