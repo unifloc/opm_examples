@@ -12,7 +12,7 @@ class DataParser:
     def __init__(self, init_file, start_date, mounths, days, nx, ny, nz, dx, dy, dz, por, permx, permy, permz, prod_names, prod_xs,
                  prod_ys, prod_z1s, prod_z2s, q_oil, inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, inj_bhp, skin, density, p_depth,
                  p_init, o_w_contact, pc_woc, g_o_contact, pc_goc, tops_depth, rezim, prod_bhp, horizontal, y_stop, only_prod,
-                 lgr, lx, ly, cells_c):
+                 lgr, lx, ly, cells_cy, cells_v, cells_cx):
         
         self.content = init_file.readlines()
         'Удалим переносы в конце строк'
@@ -89,7 +89,9 @@ class DataParser:
         self.lgr = lgr 
         self.lx = lx
         self.ly = ly
-        self.cells_c = cells_c
+        self.cells_cy = cells_cy
+        self.cells_cx = cells_cx
+        self.cells_v = cells_v
 
     def parse_file(self, keyword):
         keyword_start_flag = False
@@ -191,15 +193,40 @@ class DataParser:
     def setca(nx, lx, s):
         k = 1
         l = 0
-        while abs(l-lx) > 10:
-            k += 0.001
+        delta = lx*0.01
+        while abs(l-lx) > delta:
+            if k <= 2:
+                k += 0.001
+            else:
+                print('Невозможно разбить сетку!')
+                raise Exception() 
             n = round((nx-s)/2)
-            l = 8 + 2*(8*k*(k**n-1)/(k-1))
-            if abs(l-lx) < 10:
+            l = 8*s + 2*(8*k*(k**n-1)/(k-1))
+            if abs(l-lx) < delta:
                 x = []
                 for i in range(1, n+1):
                     x.append(round(8*k**i))
                 x = x[::-1] + [8]*s + x
+                return x
+    
+    @staticmethod     
+    def setcas(nx, lx, s, v):
+        k = 1
+        l = 0
+        delta = lx*0.01
+        while abs(l - lx) > delta:
+            if k <= 2:
+                k += 0.001
+            else:
+                print('Невозможно разбить сетку!')
+                raise Exception() 
+            n = round((nx - s) / 2)
+            l = v*s + 2 * (v * k * (k ** n - 1) / (k - 1))
+            if abs(l - lx) < delta:
+                x = []
+                for i in range(1, n + 1):
+                    x.append(round(v * k ** i))
+                x = x[::-1] + [v] * s + x
                 return x
 
     def create_tops(self):
@@ -213,22 +240,23 @@ class DataParser:
 
     def create_dx_dim(self):
         if self.lgr:
-            dx_lgr = self.setca(self.nx, self.lx, self.cells_c)
+            dx_lgr = self.setca(self.nx, self.lx, self.cells_cx)
             self.dx_dim = str(dx_lgr[0]) + ' \n'
             for i in range(2, self.nx + 1):    
                 self.dx_dim += str(dx_lgr[i-1]) + ' \n'
-            self.dx_dim = self.dx_dim*self.nx
+            self.dx_dim = self.dx_dim*self.ny
             self.dx_dim += '/\n'
         else:
             self.dx_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.dx) + ' /'
 
     def create_dy_dim(self):
         if self.lgr:
-            dy_lgr = self.setca(self.ny, self.ly, self.cells_c)
+            dy_lgr = self.setcas(self.ny, self.ly, self.cells_cy, self.cells_v)
+            print(dy_lgr)
             self.dy_dim = ''
             for i in range(1, self.ny + 1):    
                 dim = str(dy_lgr[i-1]) + ' \n'
-                self.dy_dim += dim*self.ny
+                self.dy_dim += dim*self.nx
             self.dy_dim += '/\n'
         else:
             self.dy_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.dy) + ' /'

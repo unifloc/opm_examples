@@ -30,7 +30,7 @@ class ModelGenerator:
                  permy=100, permz=10, prod_names=None, prod_xs=None, prod_ys=None, prod_z1s=None, prod_z2s=None, prod_q_oil=None,
                  inj_names=None, inj_xs=None, inj_ys=None, inj_z1s=None, inj_z2s=None, inj_bhp=None, skin=None, density=None,
                  p_depth = 2510, p_init = 320, o_w_contact = 2600, pc_woc = 0, g_o_contact = 2500, pc_goc = 0, tops_depth = 2500, rezim = 'ORAT', prod_bhp = None, horizontal = None, y_stop = None, only_prod = False,
-                 lgr = False, lx = None, ly = None, cells_c = None):
+                 lgr = False, lx = None, ly = None, cells_cy = None, cells_v = None, cells_cx=None):
         self.only_prod = only_prod
         self.start_date = start_date
         self.mounths = mounths
@@ -109,7 +109,9 @@ class ModelGenerator:
         self.lgr = lgr 
         self.lx = lx
         self.ly = ly
-        self.cells_c = cells_c
+        self.cells_cy = cells_cy
+        self.cells_cx = cells_cx
+        self.cells_v = cells_v
         self.result_df = None
         self.fig = None
         self.dir = None
@@ -121,17 +123,17 @@ class ModelGenerator:
                                self.prod_z1s, self.prod_z2s, self.q_oil, self.inj_names, self.inj_xs, self.inj_ys, self.inj_z1s,
                                self.inj_z2s, self.inj_bhp, self.skin, self.density, self.p_depth, self.p_init, self.o_w_contact, self.pc_woc, 
                                self.g_o_contact, self.pc_goc, self.tops_depth, self.rezim, self.prod_bhp, self.horizontal, self.y_stop, self.only_prod,
-                               self.lgr, self.lx, self.ly, self.cells_c)
+                               self.lgr, self.lx, self.ly, self.cells_cy, self.cells_v, self.cells_cx)
 
     def initialize_parser(self, init_file_name, start_date, mounths, days, nx, ny, nz, dx, dy, dz, por, permx, permy, permz, prod_names, prod_xs,
                           prod_ys, prod_z1s, prod_z2s, q_oil, inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, inj_bhp, skin, density, p_depth, 
                           p_init, o_w_contact, pc_woc, g_o_contact, pc_goc, tops_depth, rezim, prod_bhp, horizontal, y_stop, only_prod,
-                          lgr, lx, ly, cells_c):
+                          lgr, lx, ly, cells_cy, cells_v, cells_cx):
         init_file = open(init_file_name)
         self.parser = DataParser(init_file, start_date, mounths, days, nx, ny, nz, dx, dy, dz, por, permx, permy, permz, prod_names, prod_xs,
                                  prod_ys, prod_z1s, prod_z2s, q_oil, inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, inj_bhp, skin, density, p_depth, 
                                  p_init, o_w_contact, pc_woc, g_o_contact, pc_goc, tops_depth, rezim, prod_bhp, horizontal, y_stop, only_prod,
-                                 lgr, lx, ly, cells_c)
+                                 lgr, lx, ly, cells_cy, cells_v, cells_cx)
 
     def filter_initial_data(self):
         if max(self.prod_xs) > self.nx:
@@ -165,7 +167,7 @@ class ModelGenerator:
         self.create_result(name=name, keys=keys)
         self.read_result(name=result_name)
         self.make_plot()
-        self.export_snapshots(name=name)
+        #self.export_snapshots(name=name)
 
     def calculate_prepared_model(self, name, result_name, keys):
         self.calculate_file(name)
@@ -252,7 +254,7 @@ class ModelGenerator:
 
         print('График построен и сохранен в атрибутах класса')
         
-    def summ_plot(self, parameters=None, mode='markers'):
+    def summ_plot(self, parameters=None, mode='markers', x_axis=None, y_axis=None, title=None):
         directory = "csv_folder/"
         self.fig = go.Figure()
         for file in os.listdir(directory):
@@ -267,9 +269,15 @@ class ModelGenerator:
                     y=df[par],
                     mode=mode,
                     name='par:' + par + '; '+ 'model:' + file))
-
-        self.fig.update_xaxes(title='Дата')
-        self.fig.update_layout(title=go.layout.Title(text='Динамика показателей по моделям'))
+        if x_axis is None:
+            x_axis = 'Дата'
+        if y_axis is None:
+            y_axis = ''
+        if title is None:
+            title = 'Динамика показателей по моделям'
+        self.fig.update_layout(title=go.layout.Title(text=title),
+                               xaxis_title=x_axis,
+                               yaxis_title=y_axis)
 
 
     def export_snapshots(self, name):
