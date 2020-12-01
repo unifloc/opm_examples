@@ -30,7 +30,7 @@ class ModelGenerator:
                  permy=100, permz=10, prod_names=None, prod_xs=None, prod_ys=None, prod_z1s=None, prod_z2s=None, prod_q_oil=None,
                  inj_names=None, inj_xs=None, inj_ys=None, inj_z1s=None, inj_z2s=None, inj_bhp=None, skin=None, density=None,
                  p_depth = 2510, p_init = 320, o_w_contact = 2600, pc_woc = 0, g_o_contact = 2500, pc_goc = 0, tops_depth = 2500, rezim = 'ORAT', prod_bhp = None, horizontal = None, y_stop = None, only_prod = False,
-                 lgr = False, lx = None, ly = None, cells_cy = None, cells_v = None, cells_cx=None):
+                 lgr = False, lx = None, ly = None, cells_cy = None, cells_v = None, cells_cx=None, indicator=None):
         self.only_prod = only_prod
         self.start_date = start_date
         self.mounths = mounths
@@ -112,6 +112,7 @@ class ModelGenerator:
         self.cells_cy = cells_cy
         self.cells_cx = cells_cx
         self.cells_v = cells_v
+        self.indicator = indicator
         self.result_df = None
         self.fig = None
         self.dir = None
@@ -164,7 +165,7 @@ class ModelGenerator:
         self.parser.parse_file('TSTEP')
         self.save_file(name=name)
         self.calculate_file(name)
-        self.create_result(name=name, keys=keys)
+        self.create_result(name=name, keys=keys, indicator=self.indicator)
         self.read_result(name=result_name)
         self.make_plot()
         #self.export_snapshots(name=name)
@@ -205,7 +206,7 @@ class ModelGenerator:
         os.system("flow model_folder/%s.DATA" % name)
 
     @staticmethod
-    def create_result(name, keys):
+    def create_result(name, keys, indicator):
         summary = EclSum('model_folder/%s.DATA' % name)
         dates = summary.dates
         results = []
@@ -226,11 +227,19 @@ class ModelGenerator:
 
         result_df = pd.DataFrame(data=np.array(results).T, index=dates, columns=all_keys)
         result_df.index.name = 'Time'
-        result_df.to_csv('csv_folder/%s_RESULT.csv' % name)
+        if indicator is not None:
+            if os.path.exists(f'csv_folder/{indicator}') is False:
+                os.mkdir(f'csv_folder/{indicator}')
+            result_df.to_csv(f'csv_folder/{indicator}/%s.csv' % name)
+        else:
+            result_df.to_csv('csv_folder/%s.csv' % name)
         print('%s_RESULT.csv is created' % name)
 
     def read_result(self, name):
-        self.result_df = pd.read_csv('csv_folder/%s.csv' % name, parse_dates=[0], index_col=[0])
+        if self.indicator is not None:
+            self.result_df = pd.read_csv(f'csv_folder/{self.indicator}/%s.csv' % name, parse_dates=[0], index_col=[0])
+        else:
+            self.result_df = pd.read_csv('csv_folder/%s.csv' % name, parse_dates=[0], index_col=[0])
         print('%s.csv is read' % name)
 
     def make_plot(self, df=None, parameters=None, mode='markers'):
@@ -279,6 +288,68 @@ class ModelGenerator:
                                xaxis_title=x_axis,
                                yaxis_title=y_axis)
 
+    def summ_plot_plotn(self, parameters=None, mode='markers', x_axis=None, y_axis=None, title=None, A=None):
+        directory = "csv_folder/"
+        self.fig = go.Figure()
+        files = [f for f in os.listdir(directory)]
+        files.sort(key=lambda x:int(x.split('.')[1]))
+        i = 0
+        for file in files:
+            df = pd.read_csv('csv_folder/%s' % file, parse_dates=[0], index_col=[0])
+
+            y = df[parameters[0]]/A[i]
+            self.fig.add_trace(go.Scatter(
+                    x=df.index,
+                    y=y,
+                    mode=mode,
+                    name='par:' + str(A[i])))
+            i += 1
+        if x_axis is None:
+            x_axis = 'Дата'
+        if y_axis is None:
+            y_axis = ''
+        if title is None:
+            title = 'Динамика показателей по моделям'
+        self.fig.update_layout(title=go.layout.Title(text=title),
+                               xaxis_title=x_axis,
+                               yaxis_title=y_axis)
+
+    def sootn_plot(self, ls, par, k, h, mu):
+        self.fig = go.Figure()
+        
+        for i in range(0, 6):
+            P = []
+            directory = f"csv_folder/{i}"
+            files = [f for f in os.listdir(directory)]
+            files.sort(key=lambda x:int(x.split('.')[2]))
+            
+            for file in files:
+                df = pd.read_csv(f'csv_folder/{i}/%s' % file, parse_dates=[0], index_col=[0])
+    
+                val = k*h*(df['FPR'][0]-df['WBHP:P1'][0])/(df['WOPR:P1'][0]*mu)*10**5*86400
+                P.append(val)
+            self.fig.add_trace(go.Scatter(
+                x=ls[i],
+                y=P,
+                mode='markers',
+                name='Параметр - A/L^2 = ' + str(par[i])))
+        #l = []
+        #opt = []
+        #A = [0.25, 0.5, 1, 2, 4, 8]
+        #for i in range(0, 6):
+        #    l.append(A[i])
+        #    opt.append(A[i]/(A[i]+16))
+        #self.fig.add_trace(go.Scatter(
+        #        x=l,
+         #       y=opt,
+        #        mode='lines',
+       #         name='Оптимальное соотношение геометрических размеров'))
+        x_axis = 'Соотношение геометрических размеров области дренирования (ширина/длина)'
+        y_axis = 'Безразмерный перепад давлений P*'
+        title = 'Безразмерный перепад давления как функция соотношения геомтерических размеров области дренирования'
+        self.fig.update_layout(title=go.layout.Title(text=title),
+                               xaxis_title=x_axis,
+                               yaxis_title=y_axis)
 
     def export_snapshots(self, name):
         process = subprocess.Popen('exec ResInsight --case "model_folder/%s.EGRID"' % name, shell=True)
