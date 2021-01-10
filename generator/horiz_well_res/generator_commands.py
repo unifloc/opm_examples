@@ -7,12 +7,12 @@
 
 class DataParser:
     """
-
+    Класс для формирования data файла на расчет
     """
     def __init__(self, init_file, start_date, mounths, days, nx, ny, nz, dx, dy, dz, por, permx, permy, permz, prod_names, prod_xs,
                  prod_ys, prod_z1s, prod_z2s, q_oil, inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, inj_bhp, skin, density, p_depth,
                  p_init, o_w_contact, pc_woc, g_o_contact, pc_goc, tops_depth, rezim, prod_bhp, horizontal, y_stop, only_prod,
-                 lgr, lx, ly, cells_cy, cells_v, cells_cx):
+                 lgr, lx, ly, cells_cy, cells_v, cells_cx, upr_rezim_water, upr_rezim_gas, neodn_plast, neodn_plast_tamp):
         
         self.content = init_file.readlines()
         'Удалим переносы в конце строк'
@@ -92,6 +92,10 @@ class DataParser:
         self.cells_cy = cells_cy
         self.cells_cx = cells_cx
         self.cells_v = cells_v
+        self.upr_rezim_water = upr_rezim_water
+        self.upr_rezim_gas = upr_rezim_gas
+        self.neodn_plast = neodn_plast
+        self.neodn_plast_tamp = neodn_plast_tamp
 
     def parse_file(self, keyword):
         keyword_start_flag = False
@@ -189,26 +193,8 @@ class DataParser:
         keyword_start_flag = False
         return keyword_start_flag
     
-    @staticmethod
-    def setca(nx, lx, s):
-        k = 1
-        l = 0
-        delta = lx*0.01
-        while abs(l-lx) > delta:
-            if k <= 2:
-                k += 0.001
-            else:
-                print('Невозможно разбить сетку!')
-                raise Exception() 
-            n = round((nx-s)/2)
-            l = 8*s + 2*(8*k*(k**n-1)/(k-1))
-            if abs(l-lx) < delta:
-                x = []
-                for i in range(1, n+1):
-                    x.append(round(8*k**i))
-                x = x[::-1] + [8]*s + x
-                return x
-    
+    # метод для формирования измельченной сетки
+    # необходимо помнить, что размеры ячеек должны отличаться не более чем в 2 раза (баланс не сойдется)
     @staticmethod     
     def setcas(nx, lx, s, v):
         k = 1
@@ -225,7 +211,7 @@ class DataParser:
             if abs(l - lx) < delta:
                 x = []
                 for i in range(1, n + 1):
-                    x.append(round(v * k ** i))
+                    x.append(round(v * k ** i, 1))
                 x = x[::-1] + [v] * s + x
                 return x
 
@@ -240,7 +226,7 @@ class DataParser:
 
     def create_dx_dim(self):
         if self.lgr:
-            dx_lgr = self.setca(self.nx, self.lx, self.cells_cx)
+            dx_lgr = self.setcas(self.nx, self.lx, self.cells_cx, self.cells_v)
             self.dx_dim = str(dx_lgr[0]) + ' \n'
             for i in range(2, self.nx + 1):    
                 self.dx_dim += str(dx_lgr[i-1]) + ' \n'
@@ -252,7 +238,6 @@ class DataParser:
     def create_dy_dim(self):
         if self.lgr:
             dy_lgr = self.setcas(self.ny, self.ly, self.cells_cy, self.cells_v)
-            print(dy_lgr)
             self.dy_dim = ''
             for i in range(1, self.ny + 1):    
                 dim = str(dy_lgr[i-1]) + ' \n'
@@ -265,13 +250,32 @@ class DataParser:
             self.dz_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.dz) + ' /'
 
     def create_porosity(self):
-        self.por_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.por) + ' /'
+        if self.upr_rezim_water and self.upr_rezim_gas:
+            self.por_dim = str(self.nx*self.ny) + '*100' + ' ' + str(self.nx*self.ny*(self.nz-2)) + '*' + str(self.por) + ' ' + str(self.nx*self.ny) + '*1000' +  ' /'
+        elif self.upr_rezim_gas and not self.upr_rezim_water:
+            self.por_dim = str(self.nx*self.ny) + '*100' + ' ' + str(self.nx*self.ny*(self.nz-1)) + '*' + str(self.por) +  ' /'
+        elif self.upr_rezim_water and not self.upr_rezim_gas:
+            self.por_dim = str(self.nx*self.ny*(self.nz-1)) + '*' + str(self.por) + ' ' + str(self.nx*self.ny) + '*1000' +  ' /'
+        elif not self.upr_rezim_water and not self.upr_rezim_gas and not self.neodn_plast:
+            self.por_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.por) + ' /'
+        elif self.neodn_plast:
+            self.por_dim = str(round(self.nx*self.ny*(self.nz/2-1))) + '*' + str(self.por)  + ' ' +  str(round(self.nx*self.ny*2)) + '*0' + ' ' +  str(round(self.nx*self.ny*(self.nz/2-1))) + '*' + str(self.por) + ' /'
 
     def create_permx(self):
-        self.permx_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.permx) + ' /'
+        if self.neodn_plast:
+            tampx = '4*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-4) + '*' + str(self.permx) + ' ' + '4*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-4) + '*' + str(self.permx) + ' ' + '4*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-4) + '*' + str(self.permx) + ' ' + '4*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-4) + '*' + str(self.permx) + ' ' + str(round(self.nx*self.ny*self.nz/8-4*self.nx)) + '*' + str(self.permx) + ' '
+            tamp_x = tampx + tampx + tampx + tampx
+            self.permx_dim = tamp_x + ' ' + str(round(self.nx*self.ny*self.nz/2)) + '*' + str(round(self.permx/5)) + ' /'
+        elif not self.neodn_plast:
+            self.permx_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.permx) +  ' /'
 
     def create_permy(self):
-        self.permy_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.permy) + ' /'
+        if self.neodn_plast:
+            tampy = '4*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-4) + '*' + str(self.permy) + ' ' + '4*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-4) + '*' + str(self.permy) + ' ' + '4*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-4) + '*' + str(self.permy) + ' ' + '4*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-4) + '*' + str(self.permy) + ' ' + str(round(self.nx*self.ny*self.nz/8-4*self.nx)) + '*' + str(self.permy) + ' '
+            tamp_y = tampy + tampy + tampy + tampy
+            self.permy_dim = tamp_y + ' ' + str(round(self.nx*self.ny*self.nz/2)) + '*' + str(round(self.permy/5)) + ' /'
+        elif not self.neodn_plast:
+            self.permy_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.permy) + ' /'
 
     def create_permz(self):
         self.permz_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.permz) + ' /'
@@ -287,12 +291,11 @@ class DataParser:
 
     def create_compdat(self, name, x, y, z1, z2, skin, horizontal, y_stop):
         if horizontal:
-            #self.compdat = name + ' ' + '2*' + ' ' + str(z1) + ' ' + str(z2) + ' OPEN	1*	1*	0.5  1* ' + str(skin) + ' /\n'
-            self.compdat = name + ' ' + str(x) + ' ' + str(y) + ' ' + str(z2) + ' ' + str(z2) + ' OPEN	1*	1*	0.5  1* ' + str(skin) + ' /\n'
+            self.compdat = name + ' ' + str(x) + ' ' + str(y) + ' ' + str(z2) + ' ' + str(z2) + ' OPEN	1*	1*	0.146  1* ' + str(skin) + ' /\n'
             for i in range(y+1, y_stop+1):
-                  self.compdat += name + ' ' + str(x) + ' ' + str(i) + ' ' + str(z2) + ' ' + str(z2) + ' OPEN	1*	1*	0.5  1* ' + str(skin) + ' /\n'
+                  self.compdat += name + ' ' + str(x) + ' ' + str(i) + ' ' + str(z2) + ' ' + str(z2) + ' OPEN	1*	1*	0.146  1* ' + str(skin) + ' /\n'
         else:
-            self.compdat = name + ' ' + str(x) + ' ' + str(y) + ' ' + str(z1) + ' ' + str(z2) + ' OPEN	1*	1*	0.5  1* ' + str(skin) + ' /'
+            self.compdat = name + ' ' + str(x) + ' ' + str(y) + ' ' + str(z1) + ' ' + str(z2) + ' OPEN	1*	1*	0.146  1* ' + str(skin) + ' /'
 
     def create_wconprod(self, name, rezim, q_oil, prod_bhp):
         self.wconprod = name + ' OPEN ' + rezim + ' ' + str(q_oil) + ' 4* ' + str(prod_bhp) + ' /'
