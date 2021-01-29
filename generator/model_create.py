@@ -4,7 +4,7 @@ from ecl.summary import EclSum
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
-import rips
+#import rips
 import subprocess
 import time
 import glob
