@@ -12,7 +12,7 @@ class DataParser:
     def __init__(self, init_file, start_date, mounths, days, nx, ny, nz, dx, dy, dz, por, permx, permy, permz, prod_names, prod_xs,
                  prod_ys, prod_z1s, prod_z2s, q_oil, inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, inj_bhp, skin, density, p_depth,
                  p_init, o_w_contact, pc_woc, g_o_contact, pc_goc, tops_depth, rezim, prod_bhp, horizontal, y_stop, only_prod,
-                 lgr, lx, ly, cells_cy, cells_v, cells_cx, upr_rezim_water, upr_rezim_gas, neodn_plast, neodn_plast_tamp):
+                 lgr, lx, ly, cells_cy, cells_v, cells_cx, upr_rezim_water, upr_rezim_gas, neodn_plast, neodn_plast_tamp, rw):
         
         self.content = init_file.readlines()
         'Удалим переносы в конце строк'
@@ -76,13 +76,14 @@ class DataParser:
             self.all_well_ys = self.prod_ys + self.inj_ys
             self.all_well_z1s = self.prod_z1s + self.inj_z1s
             self.all_well_z2s = self.prod_z2s + self.inj_z2s
+            self.all_well_fluid = ['OIL' for _ in range(len(self.prod_names))] + ['WAT' for _ in range(len(self.inj_names))]
         else:
             self.all_well_names = self.prod_names
             self.all_well_xs = self.prod_xs
             self.all_well_ys = self.prod_ys 
             self.all_well_z1s = self.prod_z1s
             self.all_well_z2s = self.prod_z2s
-        self.all_well_fluid = ['OIL' for _ in range(len(self.prod_names))] + ['WAT' for _ in range(len(self.inj_names))]
+            self.all_well_fluid = ['OIL' for _ in range(len(self.prod_names))]
         self.skin = skin
         self.horizontal = horizontal
         self.y_stop = y_stop
@@ -96,6 +97,7 @@ class DataParser:
         self.upr_rezim_gas = upr_rezim_gas
         self.neodn_plast = neodn_plast
         self.neodn_plast_tamp = neodn_plast_tamp
+        self.rw = rw
 
     def parse_file(self, keyword):
         keyword_start_flag = False
@@ -163,9 +165,9 @@ class DataParser:
                     i += 1
                 keyword_start_flag = self.keyword_read(keyword)
             elif keyword_start_flag and keyword == 'COMPDAT':
-                for well, x, y, z1, z2, skin, horizontal, y_stop in zip(self.all_well_names, self.all_well_xs, self.all_well_ys,
-                                              self.all_well_z1s, self.all_well_z2s, self.skin, self.horizontal, self.y_stop):
-                    self.create_compdat(well, x, y, z1, z2, skin, horizontal, y_stop)
+                for well, x, y, z1, z2, skin, rw in zip(self.all_well_names, self.all_well_xs, self.all_well_ys,
+                                              self.all_well_z1s, self.all_well_z2s, self.skin, self.rw):
+                    self.create_compdat(well, x, y, z1, z2, skin, rw)
                     self.content.insert(i, self.compdat)
                     i += 1
                 keyword_start_flag = self.keyword_read(keyword)
@@ -263,7 +265,7 @@ class DataParser:
 
     def create_permx(self):
         if self.neodn_plast:
-            tampx = '4*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-4) + '*' + str(self.permx) + ' ' + '4*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-4) + '*' + str(self.permx) + ' ' + '4*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-4) + '*' + str(self.permx) + ' ' + '4*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-4) + '*' + str(self.permx) + ' ' + str(round(self.nx*self.ny*self.nz/8-4*self.nx)) + '*' + str(self.permx) + ' '
+            tampx = '2*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-2) + '*' + str(self.permx) + ' ' + '2*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-2) + '*' + str(self.permx) + ' ' + str(round(self.nx*self.ny*self.nz/8-2*self.nx)) + '*' + str(self.permx) + ' '
             tamp_x = tampx + tampx + tampx + tampx
             self.permx_dim = tamp_x + ' ' + str(round(self.nx*self.ny*self.nz/2)) + '*' + str(round(self.permx/5)) + ' /'
         elif not self.neodn_plast:
@@ -271,14 +273,17 @@ class DataParser:
 
     def create_permy(self):
         if self.neodn_plast:
-            tampy = '4*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-4) + '*' + str(self.permy) + ' ' + '4*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-4) + '*' + str(self.permy) + ' ' + '4*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-4) + '*' + str(self.permy) + ' ' + '4*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-4) + '*' + str(self.permy) + ' ' + str(round(self.nx*self.ny*self.nz/8-4*self.nx)) + '*' + str(self.permy) + ' '
+            tampy = '2*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-2) + '*' + str(self.permy) + ' ' + '2*' + str(round(self.neodn_plast_tamp)) + ' ' + str(self.nx-2) + '*' + str(self.permy) + ' ' + str(round(self.nx*self.ny*self.nz/8-2*self.nx)) + '*' + str(self.permy) + ' '
             tamp_y = tampy + tampy + tampy + tampy
             self.permy_dim = tamp_y + ' ' + str(round(self.nx*self.ny*self.nz/2)) + '*' + str(round(self.permy/5)) + ' /'
         elif not self.neodn_plast:
             self.permy_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.permy) + ' /'
 
     def create_permz(self):
-        self.permz_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.permz) + ' /'
+        if self.neodn_plast:
+            self.permz_dim = str(round(self.nx*self.ny*(self.nz/2-1))) + '*' + str(self.permz) + ' ' + str(self.nx*self.ny*2) + '*0' + ' ' + str(round(self.nx*self.ny*(self.nz/2-1))) + '*' + str(self.permz) + ' /'
+        elif not self.neodn_plast: 
+            self.permz_dim = str(self.nx*self.ny*self.nz) + '*' + str(self.permz) + ' /'
 
     def create_density(self):
         self.den = str(self.density[0]) + ' ' + str(self.density[1]) + ' ' + str(self.density[2]) + ' /'
@@ -289,13 +294,13 @@ class DataParser:
     def create_welspecs(self, name, x, y, fluid):
         self.welspecs = name + ' G1 ' + str(x) + ' ' + str(y) + ' * ' + fluid + ' /'
 
-    def create_compdat(self, name, x, y, z1, z2, skin, horizontal, y_stop):
-        if horizontal:
-            self.compdat = name + ' ' + str(x) + ' ' + str(y) + ' ' + str(z2) + ' ' + str(z2) + ' OPEN	1*	1*	0.146  1* ' + str(skin) + ' /\n'
-            for i in range(y+1, y_stop+1):
-                  self.compdat += name + ' ' + str(x) + ' ' + str(i) + ' ' + str(z2) + ' ' + str(z2) + ' OPEN	1*	1*	0.146  1* ' + str(skin) + ' /\n'
+    def create_compdat(self, name, x, y, z1, z2, skin, rw):
+        if self.horizontal:
+            self.compdat = name + ' ' + str(x) + ' ' + str(y) + ' ' + str(z2) + ' ' + str(z2) + ' OPEN	1*	1* ' + str(rw) +  ' 1* ' + str(skin) + ' 1* Y /\n' 
+            for i in range(y+1, self.y_stop[0]+1):
+                  self.compdat += name + ' ' + str(x) + ' ' + str(i) + ' ' + str(z2) + ' ' + str(z2) + ' OPEN	1*	1* ' + str(rw) +  ' 1* ' + str(skin) + ' 1* Y /\n'
         else:
-            self.compdat = name + ' ' + str(x) + ' ' + str(y) + ' ' + str(z1) + ' ' + str(z2) + ' OPEN	1*	1*	0.146  1* ' + str(skin) + ' /'
+            self.compdat = name + ' ' + str(x) + ' ' + str(y) + ' ' + str(z1) + ' ' + str(z2) + ' OPEN	1*	1*	' + str(rw) +  ' 1* ' + str(skin) + ' /'
 
     def create_wconprod(self, name, rezim, q_oil, prod_bhp):
         self.wconprod = name + ' OPEN ' + rezim + ' ' + str(q_oil) + ' 4* ' + str(prod_bhp) + ' /'

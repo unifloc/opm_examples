@@ -16,28 +16,32 @@ import math as m
 """
 @alexeyvodopyan
 23.09
-
+@sevrn
 """
+
+
+def clear_folders():
+    subprocess.call("rm -f model_folder/*", shell=True)
+    subprocess.call("rm -f csv_folder/*", shell=True)
+
 
 class ModelGenerator:
     """
     
     """
 
-    def __init__(self, init_file_name='RIENM1_INIT.DATA', start_date="1 'SEP' 2019", mounths = 24, days = 30, nx=100, ny=100, nz=5, dx=500, dy=500, dz=20, por=0.3, permx=100,
+    def __init__(self, init_file_name='RIENM1_INIT.DATA', start_date="1 'SEP' 2020", mounths = 12, days = 30, nx=100, ny=100, nz=5, dx=500, dy=500, dz=20, por=0.3, permx=100,
                  permy=100, permz=10, prod_names=None, prod_xs=None, prod_ys=None, prod_z1s=None, prod_z2s=None, prod_q_oil=None,
                  inj_names=None, inj_xs=None, inj_ys=None, inj_z1s=None, inj_z2s=None, inj_bhp=None, skin=None, density=None,
-                 p_depth = 2510, p_init = 320, o_w_contact = 2600, pc_woc = 0, g_o_contact = 2500, pc_goc = 0, tops_depth = 2500, rezim = 'ORAT', prod_bhp = None, horizontal = None, y_stop = None, only_prod = False,
+                 p_depth = 2510, p_init = 320, o_w_contact = 2600, pc_woc = 0, g_o_contact = 2450, pc_goc = 0, tops_depth = 2500, rezim = 'ORAT', prod_bhp = None, horizontal = None, y_stop = None, only_prod = False,
                  lgr = False, lx = None, ly = None, cells_cy = None, cells_v = None, cells_cx=None, indicator=None, upr_rezim_water=False, upr_rezim_gas=False, neodn_plast=False,
-                 neodn_plast_tamp=None):
-        self.only_prod = only_prod
-        self.neodn_plast_tamp = neodn_plast_tamp
-        self.upr_rezim_water = upr_rezim_water
-        self.upr_rezim_gas = upr_rezim_gas
-        self.neodn_plast = neodn_plast
+                 neodn_plast_tamp=None, rw=None):
+        # паарметры расчета
         self.start_date = start_date
         self.mounths = mounths
         self.days = days
+
+        # размеры модели
         self.nx = nx
         self.ny = ny
         self.nz = nz
@@ -45,10 +49,14 @@ class ModelGenerator:
         self.dy = dy
         self.dz = dz
         self.tops_depth = tops_depth
+        
+        # физические свойства
         self.por = por
         self.permx = permx
         self.permy = permy
         self.permz = permz
+
+        # EQUILIBRIUM DATA
         self.p_depth = p_depth
         self.p_init = p_init
         self.o_w_contact = o_w_contact
@@ -56,41 +64,11 @@ class ModelGenerator:
         self.g_o_contact = g_o_contact
         self.pc_goc = pc_goc
 
-        if prod_ys is None:
-            prod_ys = [1, 3, 5, 7]
-        if prod_xs is None:
-            prod_xs = [1, 3, 5, 7]
-        if prod_names is None:
-            prod_names = ['PROD1', 'PROD2', 'PROD3', 'PROD4']
-        if prod_z1s is None:
-            prod_z1s = [1, 1, 1, 1]
-        if prod_z2s is None:
-            prod_z2s = [2, 2, 2, 2]
-        if prod_q_oil is None:
-            prod_q_oil = [100, 100, 100, 100]
-        if prod_bhp is None:
-            prod_bhp = [150, 150, 150, 150]
-        if inj_ys is None:
-            inj_ys = [1]
-        if inj_xs is None:
-            inj_xs = [7]
-        if inj_names is None:
-            inj_names = ['INJ1']
-        if inj_z1s is None:
-            inj_z1s = [1]
-        if inj_z2s is None:
-            inj_z2s = [2]
-        if inj_bhp is None:
-            inj_bhp = [400, 400, 400, 400]
-        if density is None:
-            density =[860, 1010, 0.9]
-        if skin is None:
-            skin = [0, 0, 0, 0, 0]
-        if horizontal is None:
-            horizontal = [False, False, False, False]
-        if y_stop is None:
-            y_stop = [None, None, None, None]
+        # свойства нефти
+        self.density = density
 
+        # параметры скважин
+        # добывающие
         self.prod_names = prod_names
         self.rezim = rezim
         self.prod_xs = prod_xs
@@ -99,22 +77,39 @@ class ModelGenerator:
         self.prod_z2s = prod_z2s
         self.q_oil = prod_q_oil
         self.prod_bhp = prod_bhp
+
+        # нагнетательные 
+        self.inj_names = inj_names
         self.inj_ys = inj_ys
         self.inj_xs = inj_xs
-        self.inj_names = inj_names
         self.inj_z1s = inj_z1s
         self.inj_z2s = inj_z2s
         self.inj_bhp = inj_bhp
-        self.skin = skin
-        self.density = density
-        self.y_stop = y_stop
+
+        self.skin = skin # скин
+        self.rw = rw # радиус скважины
+        
+        # горизонтальные (стоит взглянуть на compdat)
         self.horizontal = horizontal
+        self.y_stop = y_stop # начало задается prod_ys
+
+        # LGR (в разработке)
         self.lgr = lgr 
         self.lx = lx
         self.ly = ly
         self.cells_cy = cells_cy
         self.cells_cx = cells_cx
         self.cells_v = cells_v
+
+        # индикаторы режимов (в разработке)
+        self.only_prod = only_prod # оставляет только добывающие скважины
+        self.upr_rezim_water = upr_rezim_water # умножает на 1000 пористость последнего пропласта (предварительно необходимо установить ВНК)
+        self.upr_rezim_gas = upr_rezim_gas # умножает на 100 пористость первого пропластка (предварителньо необходимо установить ГНК)
+        # моделирование тампонирования
+        self.neodn_plast_tamp = neodn_plast_tamp # значение проницаемости в ПЗ высокопрониц. слоя доб. скв. 
+        self.neodn_plast = neodn_plast # два несвязанных пропласта с разной проницаемостью
+
+        # переменные для расчета
         self.indicator = indicator
         self.result_df = None
         self.fig = None
@@ -129,17 +124,18 @@ class ModelGenerator:
                                self.inj_z2s, self.inj_bhp, self.skin, self.density, self.p_depth, self.p_init, self.o_w_contact, self.pc_woc, 
                                self.g_o_contact, self.pc_goc, self.tops_depth, self.rezim, self.prod_bhp, self.horizontal, self.y_stop, self.only_prod,
                                self.lgr, self.lx, self.ly, self.cells_cy, self.cells_v, self.cells_cx, self.upr_rezim_water, self.upr_rezim_gas, self.neodn_plast,
-                               self.neodn_plast_tamp)
+                               self.neodn_plast_tamp, self.rw)
 
+     
     def initialize_parser(self, init_file_name, start_date, mounths, days, nx, ny, nz, dx, dy, dz, por, permx, permy, permz, prod_names, prod_xs,
                           prod_ys, prod_z1s, prod_z2s, q_oil, inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, inj_bhp, skin, density, p_depth, 
                           p_init, o_w_contact, pc_woc, g_o_contact, pc_goc, tops_depth, rezim, prod_bhp, horizontal, y_stop, only_prod,
-                          lgr, lx, ly, cells_cy, cells_v, cells_cx, upr_rezim_water, upr_rezim_gas, neodn_plast, neodn_plast_tamp):
+                          lgr, lx, ly, cells_cy, cells_v, cells_cx, upr_rezim_water, upr_rezim_gas, neodn_plast, neodn_plast_tamp, rw):
         init_file = open(init_file_name)
         self.parser = DataParser(init_file, start_date, mounths, days, nx, ny, nz, dx, dy, dz, por, permx, permy, permz, prod_names, prod_xs,
                                  prod_ys, prod_z1s, prod_z2s, q_oil, inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, inj_bhp, skin, density, p_depth, 
                                  p_init, o_w_contact, pc_woc, g_o_contact, pc_goc, tops_depth, rezim, prod_bhp, horizontal, y_stop, only_prod,
-                                 lgr, lx, ly, cells_cy, cells_v, cells_cx, upr_rezim_water, upr_rezim_gas, neodn_plast, neodn_plast_tamp)
+                                 lgr, lx, ly, cells_cy, cells_v, cells_cx, upr_rezim_water, upr_rezim_gas, neodn_plast, neodn_plast_tamp, rw)
 
     def filter_initial_data(self):
         if max(self.prod_xs) > self.nx:
@@ -175,31 +171,6 @@ class ModelGenerator:
         self.make_plot()
         #self.export_snapshots(name=name)   
 
-    def calculate_prepared_model(self, name, result_name, keys):
-        self.calculate_file(name)
-        self.create_result(name=name, keys=keys)
-        self.read_result(name=result_name)
-        self.make_plot()
-        self.export_snapshots(name=name)
-
-    def create_lazy_5_spot(self):
-        prod_xs = [1, 1, self.nx, self.nx]
-        prod_ys = [1, self.ny, 1, self.ny]
-        prod_z1s = [1, 1, 1, 1]
-        prod_z2s = [self.nz, self.nz, self.nz, self.nz]
-        inj_xs = [int(self.nx/2)]
-        inj_ys = [int(self.ny/2)]
-        inj_z1s = [1]
-        inj_z2s = [self.nz]
-        self.initialize_parser(self.init_file_name, self.start_date, self.mounths, self.days, self.nx, self.ny, self.nz, self.dx, self.dy, self.dz, self.por,
-                               self.permx, self.permy, self.permz, self.prod_names, prod_xs, prod_ys, prod_z1s,
-                               prod_z2s, self.q_oil, self.inj_names, inj_xs, inj_ys, inj_z1s, inj_z2s, self.inj_bhp, self.skin, self.density, self.p_depth, 
-                               self.p_init, self.o_w_contact, self.pc_woc, self.g_o_contact, self.pc_goc, self.tops_depth, self.rezim, self.prod_bhp, self.horizontal, self.y_stop, self.only_prod)
-        self.create_model(name='5_SPOT', result_name='5_SPOT_RESULT', keys=["WOPR:*", "WWPR:*", "WLPR:*",
-                                                                            "WGPR:*", "WWIR:*", "WGOR:*", "WBHP:*",
-                                                                            "WOPT:*", "WWPT:*", "WLPT:*", "WGPT:*",
-                                                                            "WWIT:*", "FOPT", "FWPT", "FLPT", "FGPT",
-                                                                            "FWIT"])
 
     def save_file(self, name):
         with open('model_folder/'+ name + '.DATA', "w") as file:
