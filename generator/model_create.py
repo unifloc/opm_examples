@@ -4,7 +4,7 @@ from ecl.summary import EclSum
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
-#import rips
+import rips
 import subprocess
 import time
 import glob
@@ -168,8 +168,7 @@ class ModelGenerator:
         self.calculate_file(name)
         self.create_result(name=name, keys=keys, indicator=self.indicator)
         self.read_result(name=result_name)
-        self.make_plot()
-        #self.export_snapshots(name=name)   
+        self.export_snapshots(name=name)   
 
 
     def save_file(self, name):
@@ -218,39 +217,19 @@ class ModelGenerator:
         else:
             self.result_df = pd.read_csv('csv_folder/%s.csv' % name, parse_dates=[0], index_col=[0])
         print('%s.csv is read' % name)
-
-    def make_plot(self, df=None, parameters=None, mode='markers'):
-        if df is None:
-            df = self.result_df
-
-        self.fig = go.Figure()
-
-        if parameters is None:
-            parameters = df.columns
-
-        for par in parameters:
-            self.fig.add_trace(go.Scatter(
-                x=df.index,
-                y=df[par],
-                mode=mode,
-                name=par))
-
-        self.fig.update_xaxes(title='Дата')
-        self.fig.update_layout(title=go.layout.Title(text='Динамика показателей месторождения'))
-
-        print('График построен и сохранен в атрибутах класса')
         
+
 # метод построения графика по заданному параметру
-    def summ_plot(self, parameters=None, mode='markers', x_axis=None, y_axis=None, title=None, name=None, npv_ind=False, l_list=None):
+    def summ_plot(self, parameters=None, mode='lines', x_axis=None, y_axis=None, title=None, name=None, npv_ind=False, l_list=None):
         directory = "csv_folder/"
         npv_list = []
         model_list = []
         self.fig = go.Figure()
         files = [f for f in os.listdir(directory)]
-        files.sort(key=lambda x:int(x.split('.')[1]))
+        files.sort(key=lambda x:int(x.split('.')[0][-1]))
         for file in files:
             df = pd.read_csv('csv_folder/%s' % file, parse_dates=[0], index_col=[0])
-            i = int(file.split('.')[1])
+            i = int(file.split('.')[0][-1])
             if npv_ind == True:
                 npv_ = self.npv_method(df, l_list[i])
                 npv_list.append(npv_)
@@ -293,11 +272,11 @@ class ModelGenerator:
         folder_name = os.path.dirname(case_path)
 
         # create a folder to hold the snapshots
-        dirname = os.path.join(folder_name, f"snapshots/{name}")
+        dirname = os.path.join(folder_name, f"snapshots/")
         self.dir = dirname
-        if os.path.exists(dirname) is False:
-            os.mkdir(f"model_folder/snapshots/{name}")
-        shutil.rmtree(dirname)
+        # if os.path.exists(dirname) is False:
+        #     os.mkdir(f"model_folder/snapshots/{name}")
+        # shutil.rmtree(dirname)
 
         print("Exporting to folder: " + dirname)
         resinsight.set_export_folder(export_type='SNAPSHOTS', path=dirname)
@@ -324,7 +303,7 @@ class ModelGenerator:
 # метод для отображения сетки 
     def display_grids(self):
         images = []
-        image_paths = glob.glob(self.dir + '/*')
+        image_paths = glob.glob(self.dir + '*')
 
         for path in image_paths:
             images.append(Image.open(path))
@@ -378,7 +357,7 @@ class ModelGenerator:
         return round(npv, 0)
 
 # метод для отображения графика с оптимальной плотностью сетки
-    def summ_plot_plotn(self, parameters=None, mode='markers', x_axis=None, y_axis=None, title=None, A=None, name=None, npv_ind=False, l=None):
+    def summ_plot_plotn(self, parameters=None, mode='lines', x_axis=None, y_axis=None, title=None, A=None, name=None, npv_ind=False, l=None):
         directory = "csv_folder/"
         npv_list = []
         model_list = []
@@ -439,7 +418,7 @@ class ModelGenerator:
             self.fig.add_trace(go.Scatter(
                 x=ls[i],
                 y=P,
-                mode='markers',
+                mode='lines',
                 name='Параметр - A/L^2 = ' + str(par[i])))
             x_opt.append(A[i]*10000/(A[i]*10000+400**2))
             y_opt.append(m.log(1+A[i]*10000/(400**2))*4) # убрать *2
