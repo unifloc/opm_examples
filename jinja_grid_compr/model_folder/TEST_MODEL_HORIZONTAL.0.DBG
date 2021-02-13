@@ -1,0 +1,1898 @@
+
+
+
+ ########  #          ######   #           #
+ #         #         #      #   #         # 
+ #####     #         #      #    #   #   #  
+ #         #         #      #     # # # #   
+ #         #######    ######       #   #    
+
+Flow is a simulator for fully implicit three-phase black-oil flow, and is part of OPM.
+For more information visit: https://opm-project.org 
+
+Flow Version     =  2020.10 ()
+Machine name     =  DESKTOP-R9KC607 (Number of logical cores: 12, Memory size: 12270.16 MB) 
+Operating system =  Linux x86_64 (Kernel: 5.4.72-microsoft-standard-WSL2, #1 SMP Wed Oct 28 23:40:43 UTC 2020 )
+Build time       =  2013-10-14 at 09:54:10 hrs
+Simulation started on 11-02-2021 at 10:44:33 hrs
+Parameters used by Flow:
+# [known parameters which were specified at run-time]
+EclDeckFileName="model_folder/TEST_MODEL_HORIZONTAL.0.DATA" # default: ""
+# [parameters which were specified at compile-time]
+BdaDeviceId="0"
+ContinueOnConvergenceError="0"
+CprMaxEllIter="20"
+CprReuseSetup="3"
+DbhpMaxRel="1"
+DpMaxRel="0.3"
+DsMax="0.2"
+DwellFractionMax="0.2"
+EclEnableDriftCompensation="1"
+EclEnableTuning="0"
+EclMaxTimeStepSizeAfterWellEvent="3.15576e+07"
+EclNewtonRelaxedTolerance="1e+09"
+EclNewtonRelaxedVolumeFraction="0.03"
+EclNewtonStrictIterations="8"
+EclNewtonSumTolerance="0.0001"
+EclNewtonSumToleranceExponent="0.333333"
+EclOutputDoublePrecision="0"
+EclOutputInterval="-1"
+EclRestartShrinkFactor="3"
+EclStrictParsing="0"
+EdgeWeightsMethod="1"
+EnableAdaptiveTimeStepping="1"
+EnableAsyncEclOutput="1"
+EnableAsyncVtkOutput="1"
+EnableDryRun="auto"
+EnableEclOutput="1"
+EnableGravity="1"
+EnableGridAdaptation="0"
+EnableIntensiveQuantityCache="1"
+EnableLoggingFalloutWarning="0"
+EnableOpmRstFile="0"
+EnableStorageCache="1"
+EnableTerminalOutput="1"
+EnableThermodynamicHints="0"
+EnableTracerModel="0"
+EnableTuning="0"
+EnableVtkOutput="0"
+EnableWellOperabilityCheck="1"
+EnableWriteAllSolutions="0"
+EndTime="1e+100"
+FlowLinearSolverVerbosity="0"
+FlowNewtonMaxIterations="20"
+FlowNewtonMinIterations="1"
+ForceDisableFluidInPlaceOutput="0"
+FullTimeStepInitially="0"
+GpuMode="none"
+IgnoreKeywords=""
+IluFillinLevel="0"
+IluRedblack="0"
+IluRelaxation="0.9"
+IluReorderSpheres="0"
+InitialTimeStepInDays="1"
+InitialTimeStepSize="86400"
+LinearSolverIgnoreConvergenceFailure="0"
+LinearSolverMaxIter="200"
+LinearSolverReduction="0.01"
+LinearSolverRequireFullSparsityPattern="0"
+LinearSolverRestart="40"
+Linsolver="ilu0"
+MatrixAddWellContributions="0"
+MaxInnerIterMsWells="100"
+MaxInnerIterWells="50"
+MaxPressureChangeMsWells="1e+06"
+MaxResidualAllowed="1e+07"
+MaxSinglePrecisionDays="20"
+MaxStrictIter="0"
+MaxTimeStepDivisions="10"
+MaxTimeStepSize="inf"
+MaxWelleqIter="30"
+MiluVariant="ILU"
+MinTimeStepBeforeShuttingProblematicWellsInDays="0.001"
+MinTimeStepSize="0"
+NewtonMaxError="1e+10"
+NewtonMaxIterations="14"
+NewtonMaxRelax="0.5"
+NewtonRelaxationType="dampen"
+NewtonTargetIterations="6"
+NewtonTolerance="0.01"
+NewtonVerbose="1"
+NewtonWriteConvergence="0"
+OpenclPlatformId="0"
+OutputDir=""
+OutputInterval="1"
+OutputMode="all"
+OwnerCellsFirst="1"
+ParameterFile=""
+PredeterminedTimeStepsFile=""
+PriVarOscilationThreshold="1e-05"
+PrintParameters="2"
+PrintProperties="2"
+ProjectSaturations="0"
+RegularizationFactorMsw="1"
+RelaxedFlowTolInnerIterMsw="1"
+RelaxedMaxPvFraction="0.03"
+RelaxedPressureTolInnerIterMsw="50000"
+RestartTime="-1e+35"
+RestartWritingInterval="16777215"
+ScaleLinearSystem="0"
+SchedRestart="1"
+SerialPartitioning="0"
+SolveWelleqInitially="1"
+SolverGrowthFactor="2"
+SolverMaxGrowth="3"
+SolverMaxRestarts="10"
+SolverMaxTimeStepInDays="365"
+SolverMinTimeStep="0"
+SolverRestartFactor="0.33"
+SolverVerbosity="1"
+StrictInnerIterMsWells="40"
+ThreadsPerProcess="-1"
+TimeStepAfterEventInDays="-1"
+TimeStepControl="pid"
+TimeStepControlDecayDampingFactor="1"
+TimeStepControlDecayRate="0.75"
+TimeStepControlFileName="timesteps"
+TimeStepControlGrowthDampingFactor="0.833333"
+TimeStepControlGrowthRate="1.25"
+TimeStepControlTargetIterations="30"
+TimeStepControlTargetNewtonIterations="8"
+TimeStepControlTolerance="0.1"
+TimeStepVerbosity="1"
+ToleranceCnv="0.01"
+ToleranceCnvRelaxed="1"
+ToleranceMb="1e-06"
+TolerancePressureMsWells="1000"
+ToleranceWellControl="1e-07"
+ToleranceWells="0.0001"
+UpdateEquationsScaling="0"
+UseGmres="0"
+UseInnerIterationsMsWells="1"
+UseInnerIterationsWells="0"
+UseMultisegmentWell="1"
+UseUpdateStabilization="1"
+VtkWriteAverageMolarMasses="0"
+VtkWriteDensities="1"
+VtkWriteDofIndex="0"
+VtkWriteEclTracerConcentration="0"
+VtkWriteExtrusionFactor="0"
+VtkWriteFilterVelocities="0"
+VtkWriteFugacities="0"
+VtkWriteFugacityCoeffs="0"
+VtkWriteGasDissolutionFactor="0"
+VtkWriteGasFormationVolumeFactor="0"
+VtkWriteGasSaturationPressure="0"
+VtkWriteIntrinsicPermeabilities="0"
+VtkWriteMassFractions="0"
+VtkWriteMobilities="0"
+VtkWriteMolarities="0"
+VtkWriteMoleFractions="1"
+VtkWriteOilFormationVolumeFactor="0"
+VtkWriteOilSaturationPressure="0"
+VtkWriteOilVaporizationFactor="0"
+VtkWritePorosity="1"
+VtkWritePotentialGradients="0"
+VtkWritePressures="1"
+VtkWritePrimaryVars="0"
+VtkWritePrimaryVarsMeaning="0"
+VtkWriteProcessRank="0"
+VtkWriteRelativePermeabilities="1"
+VtkWriteSaturatedGasOilVaporizationFactor="0"
+VtkWriteSaturatedOilGasDissolutionFactor="0"
+VtkWriteSaturationRatios="0"
+VtkWriteSaturations="1"
+VtkWriteTemperature="1"
+VtkWriteTotalMassFractions="0"
+VtkWriteTotalMoleFractions="0"
+VtkWriteViscosities="0"
+VtkWriteWaterFormationVolumeFactor="0"
+
+Reading deck file 'model_folder/TEST_MODEL_HORIZONTAL.0.DATA'
+    0 Reading RUNSPEC  in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 5
+    1 Reading TITLE    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 8
+    2 Reading DIMENS   in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 11
+    3 Reading EQLDIMS  in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 14
+    4 Reading TABDIMS  in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 17
+    5 Reading OIL      in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 20
+    6 Reading WATER    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 21
+    7 Reading GAS      in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 22
+    8 Reading METRIC   in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 25
+    9 Reading START    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 27
+   10 Reading WELLDIMS in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 30
+   11 Reading UNIFOUT  in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 37
+   12 Reading GRID     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 39
+   13 Reading INIT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 41
+   14 Reading NOECHO   in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 45
+   15 Reading DX       in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 47
+   16 Reading DY       in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 1650
+   17 Reading DZ       in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3253
+   18 Reading TOPS     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3256
+   19 Reading PORO     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3259
+   20 Reading PERMX    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3262
+   21 Reading PERMY    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3265
+   22 Reading PERMZ    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3268
+   23 Reading ECHO     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3272
+   24 Reading PROPS    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3274
+   25 Reading PVTW     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3277
+   26 Reading ROCK     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3287
+   27 Reading SWOF     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3294
+   28 Reading SGOF     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3317
+   29 Reading SCALECRS in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3336
+   30 Reading EQUALS   in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3340
+   31 Reading COPY     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3347
+   32 Reading DENSITY  in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3351
+   33 Reading PVTO     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3354
+   34 Reading PVDG     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3373
+   35 Reading SOLUTION in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3386
+   36 Reading EQUIL    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3389
+   37 Reading RSVD     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3401
+   38 Reading SUMMARY  in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3407
+   39 Reading RPTONLY  in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3409
+   40 Reading DATE     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3410
+   41 Reading FGPR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3411
+   42 Reading FGPRF    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3412
+   43 Reading FGPRS    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3413
+   44 Reading FGPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3414
+   45 Reading FGPTF    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3415
+   46 Reading FGPTS    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3416
+   47 Reading FLPR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3417
+   48 Reading FLPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3418
+   49 Reading FOPR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3419
+   50 Reading FOPRF    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3420
+   51 Reading FOPRS    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3421
+   52 Reading FOPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3422
+   53 Reading FOPTF    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3423
+   54 Reading FOPTS    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3424
+   55 Reading FWPR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3425
+   56 Reading FWPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3426
+   57 Reading FGIR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3427
+   58 Reading FGIT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3428
+   59 Reading FOIR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3429
+   60 Reading FOIT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3430
+   61 Reading FWIR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3431
+   62 Reading FWIT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3432
+   63 Reading FVPR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3433
+   64 Reading FVPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3434
+   65 Reading FVIR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3435
+   66 Reading FVIT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3436
+   67 Reading FGOR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3437
+   68 Reading FWCT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3438
+   69 Reading FGSAT    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3439
+   70 Reading FOSAT    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3440
+   71 Reading FWSAT    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3441
+   72 Reading FGPV     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3442
+   73 Reading FOPV     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3443
+   74 Reading FWPV     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3444
+   75 Reading FAQR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3445
+   76 Reading FAQT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3446
+   77 Reading FNQR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3447
+   78 Reading FNQT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3448
+   79 Reading FGIP     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3449
+   80 Reading FGIPG    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3450
+   81 Reading FGIPL    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3451
+   82 Reading FOIP     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3452
+   83 Reading FOIPG    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3453
+   84 Reading FOIPL    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3454
+   85 Reading FWIP     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3455
+   86 Reading FRPV     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3456
+   87 Reading FHPV     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3457
+   88 Reading FOE      in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3458
+   89 Reading FOEW     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3459
+   90 Reading FOEIW    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3460
+   91 Reading FOEIG    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3461
+   92 Reading FMWIN    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3462
+   93 Reading FMWIP    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3463
+   94 Reading FMWIT    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3464
+   95 Reading FMWPP    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3465
+   96 Reading FMWPR    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3466
+   97 Reading FMWPT    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3467
+   98 Reading FPR      in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3468
+   99 Reading FOVIS    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3469
+  100 Reading FRS      in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3470
+  101 Reading RGIP     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3471
+  102 Reading RGIPG    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3473
+  103 Reading RGIPL    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3475
+  104 Reading ROIP     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3477
+  105 Reading ROIPG    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3479
+  106 Reading ROIPL    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3481
+  107 Reading RWIP     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3483
+  108 Reading RHPV     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3485
+  109 Reading RPR      in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3487
+  110 Reading RRPV     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3489
+  111 Reading ROE      in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3491
+  112 Reading ROEIW    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3493
+  113 Reading ROPR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3495
+  114 Reading ROPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3497
+  115 Reading RWPR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3499
+  116 Reading RWPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3501
+  117 Reading RWIR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3503
+  118 Reading RWIT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3505
+  119 Reading RGSAT    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3507
+  120 Reading ROSAT    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3509
+  121 Reading RWSAT    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3511
+  122 Reading RRS      in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3513
+  123 Reading GGPR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3515
+  124 Reading GGPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3517
+  125 Reading GLPR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3519
+  126 Reading GLPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3521
+  127 Reading GOPR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3523
+  128 Reading GOPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3525
+  129 Reading GWPR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3527
+  130 Reading GWPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3529
+  131 Reading GGIR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3531
+  132 Reading GGIT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3533
+  133 Reading GOIR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3535
+  134 Reading GOIT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3537
+  135 Reading GWIR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3539
+  136 Reading GWIT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3541
+  137 Reading GGOR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3543
+  138 Reading GWCT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3545
+  139 Reading WGPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3547
+  140 Reading WGPTF    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3549
+  141 Reading WLPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3551
+  142 Reading WOPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3553
+  143 Reading WOPTF    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3555
+  144 Reading WOPTS    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3557
+  145 Reading WWPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3559
+  146 Reading WVPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3561
+  147 Reading WGIT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3563
+  148 Reading WOIT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3565
+  149 Reading WWIT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3567
+  150 Reading WVIT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3569
+  151 Reading WEFF     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3571
+  152 Reading WGPR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3573
+  153 Reading WGPRF    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3575
+  154 Reading WLPR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3577
+  155 Reading WOPR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3579
+  156 Reading WOPRF    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3581
+  157 Reading WOPRS    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3583
+  158 Reading WWPR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3585
+  159 Reading WVPR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3587
+  160 Reading WGIR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3589
+  161 Reading WOIR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3591
+  162 Reading WWIR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3593
+  163 Reading WVIR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3595
+  164 Reading WGOR     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3597
+  165 Reading WWCT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3599
+  166 Reading WBHP     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3601
+  167 Reading WBP      in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3603
+  168 Reading WBP4     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3605
+  169 Reading WBP5     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3607
+  170 Reading WBP9     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3609
+  171 Reading WTHP     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3611
+  172 Reading WTHT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3613
+  173 Reading WAPI     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3615
+  174 Reading CGPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3617
+  175 Reading CGPTF    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3619
+  176 Reading CLPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3621
+  177 Reading COPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3624
+  178 Reading COPTS    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3626
+  179 Reading CVPT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3628
+  180 Reading CWIT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3630
+  181 Reading CVIT     in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3632
+  182 Reading CPR      in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3634
+  183 Reading CTFAC    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3636
+  184 Reading FGPRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3638
+  185 Reading FGPTH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3639
+  186 Reading FLPRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3640
+  187 Reading FLPTH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3641
+  188 Reading FOPRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3642
+  189 Reading FOPTH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3643
+  190 Reading FWPRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3644
+  191 Reading FWPTH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3645
+  192 Reading FGIRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3646
+  193 Reading FGITH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3647
+  194 Reading FOIRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3648
+  195 Reading FOITH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3649
+  196 Reading FWIRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3650
+  197 Reading FWITH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3651
+  198 Reading FGORH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3652
+  199 Reading FWCTH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3653
+  200 Reading GGPRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3654
+  201 Reading GGPTH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3656
+  202 Reading GLPRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3658
+  203 Reading GLPTH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3660
+  204 Reading GOPRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3662
+  205 Reading GOPTH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3664
+  206 Reading GWPRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3666
+  207 Reading GWPTH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3668
+  208 Reading GGIRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3670
+  209 Reading GGITH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3672
+  210 Reading GOIRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3674
+  211 Reading GOITH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3676
+  212 Reading GWIRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3678
+  213 Reading GWITH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3680
+  214 Reading GGORH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3682
+  215 Reading GWCTH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3684
+  216 Reading WGPRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3686
+  217 Reading WGPTH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3688
+  218 Reading WLPRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3690
+  219 Reading WLPTH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3692
+  220 Reading WOPRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3694
+  221 Reading WOPTH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3696
+  222 Reading WWPRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3698
+  223 Reading WWPTH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3700
+  224 Reading WGIRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3702
+  225 Reading WGITH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3704
+  226 Reading WOIRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3706
+  227 Reading WOITH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3708
+  228 Reading WWIRH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3710
+  229 Reading WWITH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3712
+  230 Reading WGORH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3714
+  231 Reading WWCTH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3716
+  232 Reading WBHPH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3718
+  233 Reading WTHPH    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3720
+  234 Reading SCHEDULE in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3724
+  235 Reading RPTSCHED in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3726
+  236 Reading RPTRST   in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3729
+  237 Reading DRSDT    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3733
+  238 Reading WELSPECS in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3738
+  239 Reading COMPDAT  in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3744
+  240 Reading WCONPROD in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3772
+  241 Reading WCONINJE in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3778
+  242 Reading TSTEP    in /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3783
+Keyword NOECHO is not supported by flow.
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 45.
+Keyword ECHO is not supported by flow.
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3272.
+Keyword RPTONLY is not supported by flow.
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3409.
+Keyword WBP is not supported by flow.
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3603.
+Keyword WBP4 is not supported by flow.
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3605.
+Keyword WBP5 is not supported by flow.
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3607.
+Keyword WBP9 is not supported by flow.
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3609.
+Keyword WAPI is not supported by flow.
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3615.
+Keyword CPR is not supported by flow.
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3634.
+Creating grid from keywords DX, DY, DZ and TOPS
+Processing dynamic information from
+/home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3724
+Initializing report step 1/13 at 2020-01-01 0.0 DAYS line 3724
+Processing keyword SCHEDULE at line 3724
+Processing keyword RPTSCHED at line 3726
+Processing keyword RPTRST at line 3729
+Processing keyword DRSDT at line 3733
+Processing keyword WELSPECS at line 3738
+Processing keyword COMPDAT at line 3744
+Processing keyword WCONPROD at line 3772
+Processing keyword WCONINJE at line 3778
+TSTEP    1 5.0 DAYS -> 2020-01-06
+
+TSTEP    2 5.0 DAYS -> 2020-01-11
+
+TSTEP    3 5.0 DAYS -> 2020-01-16
+
+TSTEP    4 5.0 DAYS -> 2020-01-21
+
+TSTEP    5 5.0 DAYS -> 2020-01-26
+Report limit reached, see PRT-file for remaining Schedule initialization.
+
+TSTEP    6 5.0 DAYS -> 2020-01-31
+
+TSTEP    7 5.0 DAYS -> 2020-02-05
+
+TSTEP    8 5.0 DAYS -> 2020-02-10
+
+TSTEP    9 5.0 DAYS -> 2020-02-15
+
+TSTEP   10 5.0 DAYS -> 2020-02-20
+
+TSTEP   11 5.0 DAYS -> 2020-02-25
+
+TSTEP   12 5.0 DAYS -> 2020-03-01
+
+Property tree for linear solver:
+{
+    "tol": "0.01",
+    "maxiter": "200",
+    "verbosity": "0",
+    "solver": "bicgstab",
+    "preconditioner": {
+        "type": "ParOverILU0",
+        "relaxation": "0.90000000000000002",
+        "ilulevel": "0"
+    }
+}
+
+Unhandled summary keyword DATE
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3410
+Unhandled summary keyword DATE
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3410
+Unhandled summary keyword DATE
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3410
+Unhandled summary keyword FGSAT
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3439
+Unhandled summary keyword FOSAT
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3440
+Unhandled summary keyword FWSAT
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3441
+Unhandled summary keyword FGPV
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3442
+Unhandled summary keyword FOPV
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3443
+Unhandled summary keyword FWPV
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3444
+Unhandled summary keyword FAQR
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3445
+Unhandled summary keyword FAQT
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3446
+Unhandled summary keyword FNQR
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3447
+Unhandled summary keyword FNQT
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3448
+Unhandled summary keyword FRPV
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3456
+Unhandled summary keyword FHPV
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3457
+Unhandled summary keyword FOE
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3458
+Unhandled summary keyword FOEW
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3459
+Unhandled summary keyword FOEIW
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3460
+Unhandled summary keyword FOEIG
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3461
+Unhandled summary keyword FMWIP
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3463
+Unhandled summary keyword FMWIT
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3464
+Unhandled summary keyword FMWPP
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3465
+Unhandled summary keyword FMWPT
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3467
+Unhandled summary keyword FOVIS
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3469
+Unhandled summary keyword FRS
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3470
+Unhandled summary keyword RHPV
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3485
+Unhandled summary keyword RRPV
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3489
+Unhandled summary keyword ROE
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3491
+Unhandled summary keyword ROEIW
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3493
+Unhandled summary keyword RGSAT
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3507
+Unhandled summary keyword ROSAT
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3509
+Unhandled summary keyword RWSAT
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3511
+Unhandled summary keyword RRS
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3513
+Unhandled summary keyword WEFF
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3571
+Unhandled summary keyword WBP
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3603
+Unhandled summary keyword WBP4
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3605
+Unhandled summary keyword WBP5
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3607
+Unhandled summary keyword WBP9
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3609
+Unhandled summary keyword WTHT
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3613
+Unhandled summary keyword WAPI
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3615
+Unhandled summary keyword GOITH
+In /home/re/Desktop/opm_examples/generator/horiz_well_res/model_folder/TEST_MODEL_HORIZONTAL.0.DATA line 3676
+
+===============Saturation Functions Diagnostics===============
+
+System:  Black-oil system.
+Relative permeability input format: Saturation Family I.
+Number of saturation regions: 1
+
+
+
+================ Starting main simulation loop ===============
+
+
+
+---------------    Simulation step number 0    ---------------
+      Current time (days)     0
+      Current stepsize (days) 5
+      Total time (days)       60
+
+
+
+Report step  0/12 at day 0/60, date = 01-Jan-2020
+
+Time step 0, stepsize 1 days, at day 0/5, date = 01-Jan-2020
+Well equation solution gets converged with 3 iterations
+Well equation solution gets converged with 0 iterations
+Iter    MB(O)      MB(W)      MB(G)      CNV(O)     CNV(W)     CNV(G) 
+   0  1.566e-03  5.602e-07  0.000e+00  9.906e+00  3.544e-03  0.000e+00
+   1  4.778e-04  7.115e-07  0.000e+00  4.082e+00  1.021e-03  0.000e+00
+   2  8.406e-05  5.007e-08  0.000e+00  4.567e+00  1.469e-03  0.000e+00
+   3  4.992e-05  1.052e-08  0.000e+00  4.065e+00  1.118e-03  0.000e+00
+   4  3.354e-05  9.171e-09  0.000e+00  1.353e+00  9.870e-06  0.000e+00
+   5  1.104e-05  3.154e-09  0.000e+00  1.267e-01  9.478e-06  0.000e+00
+   6  9.922e-07  2.678e-10  0.000e+00  4.345e-04  7.608e-08  0.000e+00
+Overall linear iterations used: 52
+ Newton its= 6, linearizations= 7 (0.2sec), linear its= 52 (0.2sec)
+
+Time step 1, stepsize 2.01937 days, at day 1/5, date = 02-Jan-2020
+Well equation solution gets converged with 0 iterations
+Iter    MB(O)      MB(W)      MB(G)      CNV(O)     CNV(W)     CNV(G) 
+   0  1.253e-03  2.999e-07  0.000e+00  3.476e-02  9.075e-06  0.000e+00
+   1  4.624e-07  1.682e-08  0.000e+00  5.176e-03  3.777e-07  0.000e+00
+   2  1.465e-06  3.394e-10  0.000e+00  1.712e-04  4.255e-08  0.000e+00
+   3  1.264e-07  3.124e-11  0.000e+00  1.811e-06  4.394e-10  0.000e+00
+Overall linear iterations used: 81
+ Newton its= 3, linearizations= 4 (0.1sec), linear its= 81 (0.2sec)
+
+Time step 2, stepsize 1.98063 days, at day 3.01937/5, date = 04-Jan-2020
+Well equation solution gets converged with 0 iterations
+Iter    MB(O)      MB(W)      MB(G)      CNV(O)     CNV(W)     CNV(G) 
+   0  9.063e-04  2.158e-07  0.000e+00  3.449e-03  6.751e-06  0.000e+00
+   1  1.333e-06  8.235e-09  0.000e+00  6.822e-04  3.986e-08  0.000e+00
+   2  4.448e-07  1.092e-10  0.000e+00  7.491e-06  1.841e-09  0.000e+00
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+                                                  ===================================================
+                                                  :                   Field Totals                  :
+                                                  :      PAV  =       307.511 BARSA                 :
+                                                  :      PORV =       6678608   RM3                 :
+                                                  : Pressure is weighted by hydrocarbon pore volume :
+                                                  : Porv volumes are taken at reference conditions  :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5363287             0       5363287:      1302059   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+                                                  ===================================================
+                                                  :        FIPNUM report region   1                 :
+                                                  :      PAV  =       307.511 BARSA                 :
+                                                  :      PORV =       6678608   RM3                 :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5363287             0       5363287:      1302059   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+======================================================= PRODUCTION REPORT =======================================================
+:  WELL  :  LOCATION :CTRL:    OIL    :   WATER   :    GAS    :   FLUID   :   WATER   : GAS/OIL  :  WAT/GAS   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  :MODE:    RATE   :   RATE    :    RATE   :  RES.VOL. :    CUT    :  RATIO   :   RATIO    : CON.PR.: BLK.PR.:
+:        :           :    :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  SCM/SCM  :  SCM/SCM :  SCM/SCM   :  BARSA :  BARSA :
+=================================================================================================================================
+
+:   FIELD:           :    :        0.0:        0.0:        0.0:        0.0:      0.000:      0.00:        -nan:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      G1:           :    :     3060.1:        0.7:        0.0:     5168.4:      0.000:      0.00:19928791117.6610:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      P1:   15,   11: BHP:     3060.1:        0.7:        0.0:     5168.4:      0.000:      0.00:19928791117.6610:   200.0:     0.0: 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+=================================================== INJECTION REPORT ========================================
+:  WELL  :  LOCATION : CTRL : CTRL : CTRL :    OIL    :   WATER   :    GAS    :   FLUID   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  : MODE : MODE : MODE :    RATE   :   RATE    :    RATE   :  RES.VOL. : CON.PR.: BLK.PR.:
+:        :           : OIL  : WAT  : GAS  :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  BARSA :  BARSA :
+==============================================================================================================
+
+:   FIELD:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+:      G1:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+=================================================== CUMULATIVE PRODUCTION/INJECTION REPORT =========================================
+:  WELL  :  LOCATION :  WELL  :CTRL:    OIL    :   WATER   :    GAS    :   Prod    :    OIL    :   WATER   :    GAS    :   INJ     :
+:  NAME  :  (I,J,K)  :  TYPE  :MODE:    PROD   :   PROD    :    PROD   :  RES.VOL. :    INJ    :   INJ     :    INJ    :  RES.VOL. :
+:        :           :        :    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :
+====================================================================================================================================
+
+:   FIELD:           :        :    :        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      G1:           :        :    :       10.3:        0.0:        0.0:       14.6:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      P1:   15,   11:    PROD: BHP:       10.3:        0.0:        0.0:       14.6:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+Overall linear iterations used: 49
+ Newton its= 2, linearizations= 3 (0.1sec), linear its= 49 (0.1sec)
+Sub steps started at time = 0 (days)
+ step[ 0 ] = 1 (days)
+ step[ 1 ] = 2.01937 (days)
+ step[ 2 ] = 1.98063 (days)
+sub steps end time = 5 (days)
+Suggested next step size = 5.80526 (days)
+
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+
+                              **************************************************************************
+  Balance  at         5  Days *           RIENM_CORP - CASE 1                                          *
+  Report    1    06 Jan 2020  *                                             Flow  version     2020.10  *
+                              **************************************************************************
+
+Time step took 1.037471 seconds; total solver time 1.037471 seconds.
+
+
+---------------    Simulation step number 1    ---------------
+      Current time (days)     5
+      Current stepsize (days) 5
+      Total time (days)       60
+
+
+
+Report step  1/12 at day 5/60, date = 06-Jan-2020
+
+Time step 0, stepsize 5 days, at day 5/10, date = 06-Jan-2020
+Well equation solution gets converged with 0 iterations
+Iter    MB(O)      MB(W)      MB(G)      CNV(O)     CNV(W)     CNV(G) 
+   0  2.043e-03  4.853e-07  0.000e+00  3.920e-03  1.325e-05  0.000e+00
+   1  1.603e-06  3.554e-08  0.000e+00  2.048e-03  8.882e-08  0.000e+00
+   2  1.594e-07  3.745e-11  0.000e+00  1.421e-06  3.475e-10  0.000e+00
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+                                                  ===================================================
+                                                  :                   Field Totals                  :
+                                                  :      PAV  =       297.867 BARSA                 :
+                                                  :      PORV =       6677642   RM3                 :
+                                                  : Pressure is weighted by hydrocarbon pore volume :
+                                                  : Porv volumes are taken at reference conditions  :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5351371             0       5351371:      1302056   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+                                                  ===================================================
+                                                  :        FIPNUM report region   1                 :
+                                                  :      PAV  =       297.867 BARSA                 :
+                                                  :      PORV =       6677642   RM3                 :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5351371             0       5351371:      1302056   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+======================================================= PRODUCTION REPORT =======================================================
+:  WELL  :  LOCATION :CTRL:    OIL    :   WATER   :    GAS    :   FLUID   :   WATER   : GAS/OIL  :  WAT/GAS   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  :MODE:    RATE   :   RATE    :    RATE   :  RES.VOL. :    CUT    :  RATIO   :   RATIO    : CON.PR.: BLK.PR.:
+:        :           :    :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  SCM/SCM  :  SCM/SCM :  SCM/SCM   :  BARSA :  BARSA :
+=================================================================================================================================
+
+:   FIELD:           :    :        0.0:        0.0:        0.0:        0.0:      0.000:      0.00:        -nan:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      G1:           :    :     2728.4:        0.6:        0.0:     2721.2:      0.000:      0.00:3671396873710.3447:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      P1:   15,   11: BHP:     2728.4:        0.6:        0.0:     2721.2:      0.000:      0.00:3671396873710.3447:   200.0:     0.0: 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+=================================================== INJECTION REPORT ========================================
+:  WELL  :  LOCATION : CTRL : CTRL : CTRL :    OIL    :   WATER   :    GAS    :   FLUID   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  : MODE : MODE : MODE :    RATE   :   RATE    :    RATE   :  RES.VOL. : CON.PR.: BLK.PR.:
+:        :           : OIL  : WAT  : GAS  :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  BARSA :  BARSA :
+==============================================================================================================
+
+:   FIELD:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+:      G1:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+=================================================== CUMULATIVE PRODUCTION/INJECTION REPORT =========================================
+:  WELL  :  LOCATION :  WELL  :CTRL:    OIL    :   WATER   :    GAS    :   Prod    :    OIL    :   WATER   :    GAS    :   INJ     :
+:  NAME  :  (I,J,K)  :  TYPE  :MODE:    PROD   :   PROD    :    PROD   :  RES.VOL. :    INJ    :   INJ     :    INJ    :  RES.VOL. :
+:        :           :        :    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :
+====================================================================================================================================
+
+:   FIELD:           :        :    :        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      G1:           :        :    :       15.7:        0.0:        0.0:       20.0:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      P1:   15,   11:    PROD: BHP:       15.7:        0.0:        0.0:       20.0:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+Overall linear iterations used: 83
+ Newton its= 2, linearizations= 3 (0.1sec), linear its= 83 (0.3sec)
+Sub steps started at time = 5 (days)
+ step[ 0 ] = 5 (days)
+sub steps end time = 10 (days)
+Suggested next step size = 10.3685 (days)
+
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+Restart file written for report step:  1/12.  Date: 2020/01/06
+
+                              **************************************************************************
+  Balance  at        10  Days *           RIENM_CORP - CASE 1                                          *
+  Report    2    11 Jan 2020  *                                             Flow  version     2020.10  *
+                              **************************************************************************
+
+Time step took 2.459964 seconds; total solver time 3.497435 seconds.
+
+
+---------------    Simulation step number 2    ---------------
+      Current time (days)     10
+      Current stepsize (days) 5
+      Total time (days)       60
+
+
+
+Report step  2/12 at day 10/60, date = 11-Jan-2020
+
+Time step 0, stepsize 5 days, at day 10/15, date = 11-Jan-2020
+Well equation solution gets converged with 0 iterations
+Iter    MB(O)      MB(W)      MB(G)      CNV(O)     CNV(W)     CNV(G) 
+   0  1.787e-03  4.234e-07  0.000e+00  2.181e-03  8.990e-06  0.000e+00
+   1  6.455e-09  2.911e-08  0.000e+00  9.089e-04  9.654e-08  0.000e+00
+   2  1.238e-07  2.859e-11  0.000e+00  1.989e-06  4.868e-10  0.000e+00
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+                                                  ===================================================
+                                                  :                   Field Totals                  :
+                                                  :      PAV  =       289.168 BARSA                 :
+                                                  :      PORV =       6676771   RM3                 :
+                                                  : Pressure is weighted by hydrocarbon pore volume :
+                                                  : Porv volumes are taken at reference conditions  :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5340627             0       5340627:      1302054   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+                                                  ===================================================
+                                                  :        FIPNUM report region   1                 :
+                                                  :      PAV  =       289.168 BARSA                 :
+                                                  :      PORV =       6676771   RM3                 :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5340627             0       5340627:      1302054   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+======================================================= PRODUCTION REPORT =======================================================
+:  WELL  :  LOCATION :CTRL:    OIL    :   WATER   :    GAS    :   FLUID   :   WATER   : GAS/OIL  :  WAT/GAS   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  :MODE:    RATE   :   RATE    :    RATE   :  RES.VOL. :    CUT    :  RATIO   :   RATIO    : CON.PR.: BLK.PR.:
+:        :           :    :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  SCM/SCM  :  SCM/SCM :  SCM/SCM   :  BARSA :  BARSA :
+=================================================================================================================================
+
+:   FIELD:           :    :        0.0:        0.0:        0.0:        0.0:      0.000:      0.00:        -nan:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      G1:           :    :     2382.9:        0.6:        0.0:     2373.9:      0.000:      0.00:578714298544646.2500:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      P1:   15,   11: BHP:     2382.9:        0.6:        0.0:     2373.9:      0.000:      0.00:578714298544646.2500:   200.0:     0.0: 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+=================================================== INJECTION REPORT ========================================
+:  WELL  :  LOCATION : CTRL : CTRL : CTRL :    OIL    :   WATER   :    GAS    :   FLUID   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  : MODE : MODE : MODE :    RATE   :   RATE    :    RATE   :  RES.VOL. : CON.PR.: BLK.PR.:
+:        :           : OIL  : WAT  : GAS  :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  BARSA :  BARSA :
+==============================================================================================================
+
+:   FIELD:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+:      G1:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+=================================================== CUMULATIVE PRODUCTION/INJECTION REPORT =========================================
+:  WELL  :  LOCATION :  WELL  :CTRL:    OIL    :   WATER   :    GAS    :   Prod    :    OIL    :   WATER   :    GAS    :   INJ     :
+:  NAME  :  (I,J,K)  :  TYPE  :MODE:    PROD   :   PROD    :    PROD   :  RES.VOL. :    INJ    :   INJ     :    INJ    :  RES.VOL. :
+:        :           :        :    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :
+====================================================================================================================================
+
+:   FIELD:           :        :    :        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      G1:           :        :    :       27.7:        0.0:        0.0:       31.8:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      P1:   15,   11:    PROD: BHP:       27.7:        0.0:        0.0:       31.8:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+Overall linear iterations used: 86
+ Newton its= 2, linearizations= 3 (0.1sec), linear its= 86 (0.3sec)
+Sub steps started at time = 10 (days)
+ step[ 0 ] = 5 (days)
+sub steps end time = 15 (days)
+Suggested next step size = 11.8561 (days)
+
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+Restart file written for report step:  2/12.  Date: 2020/01/11
+
+                              **************************************************************************
+  Balance  at        15  Days *           RIENM_CORP - CASE 1                                          *
+  Report    3    16 Jan 2020  *                                             Flow  version     2020.10  *
+                              **************************************************************************
+
+Time step took 2.507529 seconds; total solver time 6.004964 seconds.
+
+
+---------------    Simulation step number 3    ---------------
+      Current time (days)     15
+      Current stepsize (days) 5
+      Total time (days)       60
+
+
+
+Report step  3/12 at day 15/60, date = 16-Jan-2020
+
+Time step 0, stepsize 5 days, at day 15/20, date = 16-Jan-2020
+Well equation solution gets converged with 0 iterations
+Iter    MB(O)      MB(W)      MB(G)      CNV(O)     CNV(W)     CNV(G) 
+   0  1.614e-03  3.817e-07  0.000e+00  1.859e-03  6.693e-06  0.000e+00
+   1  1.281e-06  2.453e-08  0.000e+00  5.695e-04  1.046e-07  0.000e+00
+   2  1.058e-07  2.441e-11  0.000e+00  2.553e-06  6.164e-10  0.000e+00
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+                                                  ===================================================
+                                                  :                   Field Totals                  :
+                                                  :      PAV  =       281.249 BARSA                 :
+                                                  :      PORV =       6675978   RM3                 :
+                                                  : Pressure is weighted by hydrocarbon pore volume :
+                                                  : Porv volumes are taken at reference conditions  :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5330852             0       5330852:      1302052   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+                                                  ===================================================
+                                                  :        FIPNUM report region   1                 :
+                                                  :      PAV  =       281.249 BARSA                 :
+                                                  :      PORV =       6675978   RM3                 :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5330852             0       5330852:      1302052   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+======================================================= PRODUCTION REPORT =======================================================
+:  WELL  :  LOCATION :CTRL:    OIL    :   WATER   :    GAS    :   FLUID   :   WATER   : GAS/OIL  :  WAT/GAS   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  :MODE:    RATE   :   RATE    :    RATE   :  RES.VOL. :    CUT    :  RATIO   :   RATIO    : CON.PR.: BLK.PR.:
+:        :           :    :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  SCM/SCM  :  SCM/SCM :  SCM/SCM   :  BARSA :  BARSA :
+=================================================================================================================================
+
+:   FIELD:           :    :        0.0:        0.0:        0.0:        0.0:      0.000:      0.00:        -nan:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      G1:           :    :     2148.7:        0.5:        0.0:     2144.7:      0.000:      0.00:116698571926502192.0000:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      P1:   15,   11: BHP:     2148.7:        0.5:        0.0:     2144.7:      0.000:      0.00:116698571926502192.0000:   200.0:     0.0: 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+=================================================== INJECTION REPORT ========================================
+:  WELL  :  LOCATION : CTRL : CTRL : CTRL :    OIL    :   WATER   :    GAS    :   FLUID   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  : MODE : MODE : MODE :    RATE   :   RATE    :    RATE   :  RES.VOL. : CON.PR.: BLK.PR.:
+:        :           : OIL  : WAT  : GAS  :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  BARSA :  BARSA :
+==============================================================================================================
+
+:   FIELD:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+:      G1:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+=================================================== CUMULATIVE PRODUCTION/INJECTION REPORT =========================================
+:  WELL  :  LOCATION :  WELL  :CTRL:    OIL    :   WATER   :    GAS    :   Prod    :    OIL    :   WATER   :    GAS    :   INJ     :
+:  NAME  :  (I,J,K)  :  TYPE  :MODE:    PROD   :   PROD    :    PROD   :  RES.VOL. :    INJ    :   INJ     :    INJ    :  RES.VOL. :
+:        :           :        :    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :
+====================================================================================================================================
+
+:   FIELD:           :        :    :        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      G1:           :        :    :       38.4:        0.0:        0.0:       42.5:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      P1:   15,   11:    PROD: BHP:       38.4:        0.0:        0.0:       42.5:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+Overall linear iterations used: 85
+ Newton its= 2, linearizations= 3 (0.1sec), linear its= 85 (0.3sec)
+Sub steps started at time = 15 (days)
+ step[ 0 ] = 5 (days)
+sub steps end time = 20 (days)
+Suggested next step size = 12.4488 (days)
+
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+Restart file written for report step:  3/12.  Date: 2020/01/16
+
+                              **************************************************************************
+  Balance  at        20  Days *           RIENM_CORP - CASE 1                                          *
+  Report    4    21 Jan 2020  *                                             Flow  version     2020.10  *
+                              **************************************************************************
+
+Time step took 2.564623 seconds; total solver time 8.569587 seconds.
+
+
+---------------    Simulation step number 4    ---------------
+      Current time (days)     20
+      Current stepsize (days) 5
+      Total time (days)       60
+
+
+
+Report step  4/12 at day 20/60, date = 21-Jan-2020
+
+Time step 0, stepsize 5 days, at day 20/25, date = 21-Jan-2020
+Well equation solution gets converged with 0 iterations
+Iter    MB(O)      MB(W)      MB(G)      CNV(O)     CNV(W)     CNV(G) 
+   0  1.470e-03  3.471e-07  0.000e+00  1.699e-03  6.464e-06  0.000e+00
+   1  8.638e-07  2.043e-08  0.000e+00  4.513e-04  7.602e-08  0.000e+00
+   2  9.248e-08  2.563e-11  0.000e+00  1.290e-06  3.175e-10  0.000e+00
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+                                                  ===================================================
+                                                  :                   Field Totals                  :
+                                                  :      PAV  =       274.022 BARSA                 :
+                                                  :      PORV =       6675254   RM3                 :
+                                                  : Pressure is weighted by hydrocarbon pore volume :
+                                                  : Porv volumes are taken at reference conditions  :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5321934             0       5321934:      1302050   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+                                                  ===================================================
+                                                  :        FIPNUM report region   1                 :
+                                                  :      PAV  =       274.022 BARSA                 :
+                                                  :      PORV =       6675254   RM3                 :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5321934             0       5321934:      1302050   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+======================================================= PRODUCTION REPORT =======================================================
+:  WELL  :  LOCATION :CTRL:    OIL    :   WATER   :    GAS    :   FLUID   :   WATER   : GAS/OIL  :  WAT/GAS   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  :MODE:    RATE   :   RATE    :    RATE   :  RES.VOL. :    CUT    :  RATIO   :   RATIO    : CON.PR.: BLK.PR.:
+:        :           :    :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  SCM/SCM  :  SCM/SCM :  SCM/SCM   :  BARSA :  BARSA :
+=================================================================================================================================
+
+:   FIELD:           :    :        0.0:        0.0:        0.0:        0.0:      0.000:      0.00:        -nan:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      G1:           :    :     1955.1:        0.5:        0.0:     1954.9:      0.000:      0.00:25501924186427822080.0000:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      P1:   15,   11: BHP:     1955.1:        0.5:        0.0:     1954.9:      0.000:      0.00:25501924186427822080.0000:   200.0:     0.0: 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+=================================================== INJECTION REPORT ========================================
+:  WELL  :  LOCATION : CTRL : CTRL : CTRL :    OIL    :   WATER   :    GAS    :   FLUID   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  : MODE : MODE : MODE :    RATE   :   RATE    :    RATE   :  RES.VOL. : CON.PR.: BLK.PR.:
+:        :           : OIL  : WAT  : GAS  :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  BARSA :  BARSA :
+==============================================================================================================
+
+:   FIELD:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+:      G1:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+=================================================== CUMULATIVE PRODUCTION/INJECTION REPORT =========================================
+:  WELL  :  LOCATION :  WELL  :CTRL:    OIL    :   WATER   :    GAS    :   Prod    :    OIL    :   WATER   :    GAS    :   INJ     :
+:  NAME  :  (I,J,K)  :  TYPE  :MODE:    PROD   :   PROD    :    PROD   :  RES.VOL. :    INJ    :   INJ     :    INJ    :  RES.VOL. :
+:        :           :        :    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :
+====================================================================================================================================
+
+:   FIELD:           :        :    :        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      G1:           :        :    :       48.2:        0.0:        0.0:       52.3:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      P1:   15,   11:    PROD: BHP:       48.2:        0.0:        0.0:       52.3:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+Overall linear iterations used: 73
+ Newton its= 2, linearizations= 3 (0.1sec), linear its= 73 (0.3sec)
+Sub steps started at time = 20 (days)
+ step[ 0 ] = 5 (days)
+sub steps end time = 25 (days)
+Suggested next step size = 12.7048 (days)
+
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+Restart file written for report step:  4/12.  Date: 2020/01/21
+
+                              **************************************************************************
+  Balance  at        25  Days *           RIENM_CORP - CASE 1                                          *
+  Report    5    26 Jan 2020  *                                             Flow  version     2020.10  *
+                              **************************************************************************
+
+Time step took 3.505837 seconds; total solver time 12.075424 seconds.
+
+
+---------------    Simulation step number 5    ---------------
+      Current time (days)     25
+      Current stepsize (days) 5
+      Total time (days)       60
+
+
+
+Report step  5/12 at day 25/60, date = 26-Jan-2020
+
+Time step 0, stepsize 5 days, at day 25/30, date = 26-Jan-2020
+Well equation solution gets converged with 0 iterations
+Iter    MB(O)      MB(W)      MB(G)      CNV(O)     CNV(W)     CNV(G) 
+   0  1.343e-03  3.166e-07  0.000e+00  1.555e-03  6.275e-06  0.000e+00
+   1  7.626e-07  1.707e-08  0.000e+00  3.810e-04  3.487e-08  0.000e+00
+   2  8.008e-08  1.873e-11  0.000e+00  1.654e-06  3.969e-10  0.000e+00
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+                                                  ===================================================
+                                                  :                   Field Totals                  :
+                                                  :      PAV  =       267.424 BARSA                 :
+                                                  :      PORV =       6674593   RM3                 :
+                                                  : Pressure is weighted by hydrocarbon pore volume :
+                                                  : Porv volumes are taken at reference conditions  :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5313794             0       5313794:      1302048   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+                                                  ===================================================
+                                                  :        FIPNUM report region   1                 :
+                                                  :      PAV  =       267.424 BARSA                 :
+                                                  :      PORV =       6674593   RM3                 :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5313794             0       5313794:      1302048   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+======================================================= PRODUCTION REPORT =======================================================
+:  WELL  :  LOCATION :CTRL:    OIL    :   WATER   :    GAS    :   FLUID   :   WATER   : GAS/OIL  :  WAT/GAS   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  :MODE:    RATE   :   RATE    :    RATE   :  RES.VOL. :    CUT    :  RATIO   :   RATIO    : CON.PR.: BLK.PR.:
+:        :           :    :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  SCM/SCM  :  SCM/SCM :  SCM/SCM   :  BARSA :  BARSA :
+=================================================================================================================================
+
+:   FIELD:           :    :        0.0:        0.0:        0.0:        0.0:      0.000:      0.00:        -nan:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      G1:           :    :     1783.5:        0.4:        0.0:     1786.2:      0.000:      0.00:5748181121048666701824.0000:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      P1:   15,   11: BHP:     1783.5:        0.4:        0.0:     1786.2:      0.000:      0.00:5748181121048666701824.0000:   200.0:     0.0: 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+=================================================== INJECTION REPORT ========================================
+:  WELL  :  LOCATION : CTRL : CTRL : CTRL :    OIL    :   WATER   :    GAS    :   FLUID   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  : MODE : MODE : MODE :    RATE   :   RATE    :    RATE   :  RES.VOL. : CON.PR.: BLK.PR.:
+:        :           : OIL  : WAT  : GAS  :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  BARSA :  BARSA :
+==============================================================================================================
+
+:   FIELD:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+:      G1:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+=================================================== CUMULATIVE PRODUCTION/INJECTION REPORT =========================================
+:  WELL  :  LOCATION :  WELL  :CTRL:    OIL    :   WATER   :    GAS    :   Prod    :    OIL    :   WATER   :    GAS    :   INJ     :
+:  NAME  :  (I,J,K)  :  TYPE  :MODE:    PROD   :   PROD    :    PROD   :  RES.VOL. :    INJ    :   INJ     :    INJ    :  RES.VOL. :
+:        :           :        :    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :
+====================================================================================================================================
+
+:   FIELD:           :        :    :        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      G1:           :        :    :       57.1:        0.0:        0.0:       61.3:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      P1:   15,   11:    PROD: BHP:       57.1:        0.0:        0.0:       61.3:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+Overall linear iterations used: 88
+ Newton its= 2, linearizations= 3 (0.1sec), linear its= 88 (0.3sec)
+Sub steps started at time = 25 (days)
+ step[ 0 ] = 5 (days)
+sub steps end time = 30 (days)
+Suggested next step size = 13.0039 (days)
+
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+Restart file written for report step:  5/12.  Date: 2020/01/26
+
+                              **************************************************************************
+  Balance  at        30  Days *           RIENM_CORP - CASE 1                                          *
+  Report    6    31 Jan 2020  *                                             Flow  version     2020.10  *
+                              **************************************************************************
+
+Time step took 2.483066 seconds; total solver time 14.558490 seconds.
+
+
+---------------    Simulation step number 6    ---------------
+      Current time (days)     30
+      Current stepsize (days) 5
+      Total time (days)       60
+
+
+
+Report step  6/12 at day 30/60, date = 31-Jan-2020
+
+Time step 0, stepsize 5 days, at day 30/35, date = 31-Jan-2020
+Well equation solution gets converged with 0 iterations
+Iter    MB(O)      MB(W)      MB(G)      CNV(O)     CNV(W)     CNV(G) 
+   0  1.227e-03  2.889e-07  0.000e+00  1.406e-03  6.118e-06  0.000e+00
+   1  9.068e-07  1.430e-08  0.000e+00  2.976e-04  3.698e-08  0.000e+00
+   2  5.841e-08  1.367e-11  0.000e+00  1.013e-06  2.438e-10  0.000e+00
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+                                                  ===================================================
+                                                  :                   Field Totals                  :
+                                                  :      PAV  =       261.399 BARSA                 :
+                                                  :      PORV =       6673990   RM3                 :
+                                                  : Pressure is weighted by hydrocarbon pore volume :
+                                                  : Porv volumes are taken at reference conditions  :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5306364             0       5306364:      1302046   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+                                                  ===================================================
+                                                  :        FIPNUM report region   1                 :
+                                                  :      PAV  =       261.399 BARSA                 :
+                                                  :      PORV =       6673990   RM3                 :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5306364             0       5306364:      1302046   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+======================================================= PRODUCTION REPORT =======================================================
+:  WELL  :  LOCATION :CTRL:    OIL    :   WATER   :    GAS    :   FLUID   :   WATER   : GAS/OIL  :  WAT/GAS   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  :MODE:    RATE   :   RATE    :    RATE   :  RES.VOL. :    CUT    :  RATIO   :   RATIO    : CON.PR.: BLK.PR.:
+:        :           :    :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  SCM/SCM  :  SCM/SCM :  SCM/SCM   :  BARSA :  BARSA :
+=================================================================================================================================
+
+:   FIELD:           :    :        0.0:        0.0:        0.0:        0.0:      0.000:      0.00:        -nan:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      G1:           :    :     1628.0:        0.4:        0.0:     1632.8:      0.000:      0.00:1308084765567007162630144.0000:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      P1:   15,   11: BHP:     1628.0:        0.4:        0.0:     1632.8:      0.000:      0.00:1308084765567007162630144.0000:   200.0:     0.0: 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+=================================================== INJECTION REPORT ========================================
+:  WELL  :  LOCATION : CTRL : CTRL : CTRL :    OIL    :   WATER   :    GAS    :   FLUID   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  : MODE : MODE : MODE :    RATE   :   RATE    :    RATE   :  RES.VOL. : CON.PR.: BLK.PR.:
+:        :           : OIL  : WAT  : GAS  :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  BARSA :  BARSA :
+==============================================================================================================
+
+:   FIELD:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+:      G1:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+=================================================== CUMULATIVE PRODUCTION/INJECTION REPORT =========================================
+:  WELL  :  LOCATION :  WELL  :CTRL:    OIL    :   WATER   :    GAS    :   Prod    :    OIL    :   WATER   :    GAS    :   INJ     :
+:  NAME  :  (I,J,K)  :  TYPE  :MODE:    PROD   :   PROD    :    PROD   :  RES.VOL. :    INJ    :   INJ     :    INJ    :  RES.VOL. :
+:        :           :        :    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :
+====================================================================================================================================
+
+:   FIELD:           :        :    :        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      G1:           :        :    :       65.2:        0.0:        0.0:       69.4:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      P1:   15,   11:    PROD: BHP:       65.2:        0.0:        0.0:       69.4:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+Overall linear iterations used: 89
+ Newton its= 2, linearizations= 3 (0.1sec), linear its= 89 (0.3sec)
+Sub steps started at time = 30 (days)
+ step[ 0 ] = 5 (days)
+sub steps end time = 35 (days)
+Suggested next step size = 13.3275 (days)
+
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+Restart file written for report step:  6/12.  Date: 2020/01/31
+
+                              **************************************************************************
+  Balance  at        35  Days *           RIENM_CORP - CASE 1                                          *
+  Report    7    05 Feb 2020  *                                             Flow  version     2020.10  *
+                              **************************************************************************
+
+Time step took 2.475109 seconds; total solver time 17.033599 seconds.
+
+
+---------------    Simulation step number 7    ---------------
+      Current time (days)     35
+      Current stepsize (days) 5
+      Total time (days)       60
+
+
+
+Report step  7/12 at day 35/60, date = 05-Feb-2020
+
+Time step 0, stepsize 5 days, at day 35/40, date = 05-Feb-2020
+Well equation solution gets converged with 0 iterations
+Iter    MB(O)      MB(W)      MB(G)      CNV(O)     CNV(W)     CNV(G) 
+   0  1.121e-03  2.636e-07  0.000e+00  1.290e-03  5.988e-06  0.000e+00
+   1  5.689e-07  1.188e-08  0.000e+00  2.651e-04  2.671e-08  0.000e+00
+   2  5.910e-08  1.383e-11  0.000e+00  9.338e-07  2.205e-10  0.000e+00
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+                                                  ===================================================
+                                                  :                   Field Totals                  :
+                                                  :      PAV  =       255.899 BARSA                 :
+                                                  :      PORV =       6673440   RM3                 :
+                                                  : Pressure is weighted by hydrocarbon pore volume :
+                                                  : Porv volumes are taken at reference conditions  :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5299585             0       5299585:      1302045   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+                                                  ===================================================
+                                                  :        FIPNUM report region   1                 :
+                                                  :      PAV  =       255.899 BARSA                 :
+                                                  :      PORV =       6673440   RM3                 :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5299585             0       5299585:      1302045   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+======================================================= PRODUCTION REPORT =======================================================
+:  WELL  :  LOCATION :CTRL:    OIL    :   WATER   :    GAS    :   FLUID   :   WATER   : GAS/OIL  :  WAT/GAS   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  :MODE:    RATE   :   RATE    :    RATE   :  RES.VOL. :    CUT    :  RATIO   :   RATIO    : CON.PR.: BLK.PR.:
+:        :           :    :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  SCM/SCM  :  SCM/SCM :  SCM/SCM   :  BARSA :  BARSA :
+=================================================================================================================================
+
+:   FIELD:           :    :        0.0:        0.0:        0.0:        0.0:      0.000:      0.00:        -nan:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      G1:           :    :     1485.9:        0.3:        0.0:     1492.3:      0.000:      0.00:296864729683471575373840384.0000:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      P1:   15,   11: BHP:     1485.9:        0.3:        0.0:     1492.3:      0.000:      0.00:296864729683471575373840384.0000:   200.0:     0.0: 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+=================================================== INJECTION REPORT ========================================
+:  WELL  :  LOCATION : CTRL : CTRL : CTRL :    OIL    :   WATER   :    GAS    :   FLUID   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  : MODE : MODE : MODE :    RATE   :   RATE    :    RATE   :  RES.VOL. : CON.PR.: BLK.PR.:
+:        :           : OIL  : WAT  : GAS  :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  BARSA :  BARSA :
+==============================================================================================================
+
+:   FIELD:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+:      G1:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+=================================================== CUMULATIVE PRODUCTION/INJECTION REPORT =========================================
+:  WELL  :  LOCATION :  WELL  :CTRL:    OIL    :   WATER   :    GAS    :   Prod    :    OIL    :   WATER   :    GAS    :   INJ     :
+:  NAME  :  (I,J,K)  :  TYPE  :MODE:    PROD   :   PROD    :    PROD   :  RES.VOL. :    INJ    :   INJ     :    INJ    :  RES.VOL. :
+:        :           :        :    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :
+====================================================================================================================================
+
+:   FIELD:           :        :    :        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      G1:           :        :    :       72.7:        0.0:        0.0:       76.9:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      P1:   15,   11:    PROD: BHP:       72.7:        0.0:        0.0:       76.9:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+Overall linear iterations used: 85
+ Newton its= 2, linearizations= 3 (0.1sec), linear its= 85 (0.3sec)
+Sub steps started at time = 35 (days)
+ step[ 0 ] = 5 (days)
+sub steps end time = 40 (days)
+Suggested next step size = 13.6714 (days)
+
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+Restart file written for report step:  7/12.  Date: 2020/02/05
+
+                              **************************************************************************
+  Balance  at        40  Days *           RIENM_CORP - CASE 1                                          *
+  Report    8    10 Feb 2020  *                                             Flow  version     2020.10  *
+                              **************************************************************************
+
+Time step took 2.492778 seconds; total solver time 19.526377 seconds.
+
+
+---------------    Simulation step number 8    ---------------
+      Current time (days)     40
+      Current stepsize (days) 5
+      Total time (days)       60
+
+
+
+Report step  8/12 at day 40/60, date = 10-Feb-2020
+
+Time step 0, stepsize 5 days, at day 40/45, date = 10-Feb-2020
+Well equation solution gets converged with 0 iterations
+Iter    MB(O)      MB(W)      MB(G)      CNV(O)     CNV(W)     CNV(G) 
+   0  1.024e-03  2.405e-07  0.000e+00  1.193e-03  5.880e-06  0.000e+00
+   1  1.228e-06  1.007e-08  0.000e+00  2.895e-04  7.074e-08  0.000e+00
+   2  8.560e-08  2.011e-11  0.000e+00  1.550e-06  3.688e-10  0.000e+00
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+                                                  ===================================================
+                                                  :                   Field Totals                  :
+                                                  :      PAV  =       250.881 BARSA                 :
+                                                  :      PORV =       6672938   RM3                 :
+                                                  : Pressure is weighted by hydrocarbon pore volume :
+                                                  : Porv volumes are taken at reference conditions  :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5293400             0       5293400:      1302043   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+                                                  ===================================================
+                                                  :        FIPNUM report region   1                 :
+                                                  :      PAV  =       250.881 BARSA                 :
+                                                  :      PORV =       6672938   RM3                 :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5293400             0       5293400:      1302043   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+======================================================= PRODUCTION REPORT =======================================================
+:  WELL  :  LOCATION :CTRL:    OIL    :   WATER   :    GAS    :   FLUID   :   WATER   : GAS/OIL  :  WAT/GAS   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  :MODE:    RATE   :   RATE    :    RATE   :  RES.VOL. :    CUT    :  RATIO   :   RATIO    : CON.PR.: BLK.PR.:
+:        :           :    :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  SCM/SCM  :  SCM/SCM :  SCM/SCM   :  BARSA :  BARSA :
+=================================================================================================================================
+
+:   FIELD:           :    :        0.0:        0.0:        0.0:        0.0:      0.000:      0.00:        -nan:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      G1:           :    :     1355.9:        0.3:        0.0:     1363.4:      0.000:      0.00:67474035960809254104489525248.0000:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      P1:   15,   11: BHP:     1355.9:        0.3:        0.0:     1363.4:      0.000:      0.00:67474035960809254104489525248.0000:   200.0:     0.0: 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+=================================================== INJECTION REPORT ========================================
+:  WELL  :  LOCATION : CTRL : CTRL : CTRL :    OIL    :   WATER   :    GAS    :   FLUID   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  : MODE : MODE : MODE :    RATE   :   RATE    :    RATE   :  RES.VOL. : CON.PR.: BLK.PR.:
+:        :           : OIL  : WAT  : GAS  :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  BARSA :  BARSA :
+==============================================================================================================
+
+:   FIELD:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+:      G1:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+=================================================== CUMULATIVE PRODUCTION/INJECTION REPORT =========================================
+:  WELL  :  LOCATION :  WELL  :CTRL:    OIL    :   WATER   :    GAS    :   Prod    :    OIL    :   WATER   :    GAS    :   INJ     :
+:  NAME  :  (I,J,K)  :  TYPE  :MODE:    PROD   :   PROD    :    PROD   :  RES.VOL. :    INJ    :   INJ     :    INJ    :  RES.VOL. :
+:        :           :        :    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :
+====================================================================================================================================
+
+:   FIELD:           :        :    :        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      G1:           :        :    :       79.4:        0.0:        0.0:       83.7:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      P1:   15,   11:    PROD: BHP:       79.4:        0.0:        0.0:       83.7:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+Overall linear iterations used: 78
+ Newton its= 2, linearizations= 3 (0.1sec), linear its= 78 (0.3sec)
+Sub steps started at time = 40 (days)
+ step[ 0 ] = 5 (days)
+sub steps end time = 45 (days)
+Suggested next step size = 14.034 (days)
+
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+Restart file written for report step:  8/12.  Date: 2020/02/10
+
+                              **************************************************************************
+  Balance  at        45  Days *           RIENM_CORP - CASE 1                                          *
+  Report    9    15 Feb 2020  *                                             Flow  version     2020.10  *
+                              **************************************************************************
+
+Time step took 4.848189 seconds; total solver time 24.374566 seconds.
+
+
+---------------    Simulation step number 9    ---------------
+      Current time (days)     45
+      Current stepsize (days) 5
+      Total time (days)       60
+
+
+
+Report step  9/12 at day 45/60, date = 15-Feb-2020
+
+Time step 0, stepsize 5 days, at day 45/50, date = 15-Feb-2020
+Well equation solution gets converged with 0 iterations
+Iter    MB(O)      MB(W)      MB(G)      CNV(O)     CNV(W)     CNV(G) 
+   0  9.347e-04  2.193e-07  0.000e+00  1.099e-03  5.789e-06  0.000e+00
+   1  1.358e-06  8.454e-09  0.000e+00  2.612e-04  6.383e-08  0.000e+00
+   2  6.080e-08  1.418e-11  0.000e+00  1.149e-06  2.724e-10  0.000e+00
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+                                                  ===================================================
+                                                  :                   Field Totals                  :
+                                                  :      PAV  =       246.304 BARSA                 :
+                                                  :      PORV =       6672479   RM3                 :
+                                                  : Pressure is weighted by hydrocarbon pore volume :
+                                                  : Porv volumes are taken at reference conditions  :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5287760             0       5287760:      1302042   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+                                                  ===================================================
+                                                  :        FIPNUM report region   1                 :
+                                                  :      PAV  =       246.304 BARSA                 :
+                                                  :      PORV =       6672479   RM3                 :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5287760             0       5287760:      1302042   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+======================================================= PRODUCTION REPORT =======================================================
+:  WELL  :  LOCATION :CTRL:    OIL    :   WATER   :    GAS    :   FLUID   :   WATER   : GAS/OIL  :  WAT/GAS   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  :MODE:    RATE   :   RATE    :    RATE   :  RES.VOL. :    CUT    :  RATIO   :   RATIO    : CON.PR.: BLK.PR.:
+:        :           :    :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  SCM/SCM  :  SCM/SCM :  SCM/SCM   :  BARSA :  BARSA :
+=================================================================================================================================
+
+:   FIELD:           :    :        0.0:        0.0:        0.0:        0.0:      0.000:      0.00:        -nan:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      G1:           :    :     1236.9:        0.3:        0.0:     1245.1:      0.000:      0.00:15135022739657265516088655872000.0000:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      P1:   15,   11: BHP:     1236.9:        0.3:        0.0:     1245.1:      0.000:      0.00:15135022739657265516088655872000.0000:   200.0:     0.0: 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+=================================================== INJECTION REPORT ========================================
+:  WELL  :  LOCATION : CTRL : CTRL : CTRL :    OIL    :   WATER   :    GAS    :   FLUID   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  : MODE : MODE : MODE :    RATE   :   RATE    :    RATE   :  RES.VOL. : CON.PR.: BLK.PR.:
+:        :           : OIL  : WAT  : GAS  :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  BARSA :  BARSA :
+==============================================================================================================
+
+:   FIELD:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+:      G1:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+=================================================== CUMULATIVE PRODUCTION/INJECTION REPORT =========================================
+:  WELL  :  LOCATION :  WELL  :CTRL:    OIL    :   WATER   :    GAS    :   Prod    :    OIL    :   WATER   :    GAS    :   INJ     :
+:  NAME  :  (I,J,K)  :  TYPE  :MODE:    PROD   :   PROD    :    PROD   :  RES.VOL. :    INJ    :   INJ     :    INJ    :  RES.VOL. :
+:        :           :        :    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :
+====================================================================================================================================
+
+:   FIELD:           :        :    :        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      G1:           :        :    :       85.6:        0.0:        0.0:       89.9:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      P1:   15,   11:    PROD: BHP:       85.6:        0.0:        0.0:       89.9:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+Overall linear iterations used: 81
+ Newton its= 2, linearizations= 3 (0.1sec), linear its= 81 (0.3sec)
+Sub steps started at time = 45 (days)
+ step[ 0 ] = 5 (days)
+sub steps end time = 50 (days)
+Suggested next step size = 14.4144 (days)
+
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+Restart file written for report step:  9/12.  Date: 2020/02/15
+
+                              **************************************************************************
+  Balance  at        50  Days *           RIENM_CORP - CASE 1                                          *
+  Report   10    20 Feb 2020  *                                             Flow  version     2020.10  *
+                              **************************************************************************
+
+Time step took 2.922987 seconds; total solver time 27.297553 seconds.
+
+
+---------------    Simulation step number 10    ---------------
+      Current time (days)     50
+      Current stepsize (days) 5
+      Total time (days)       60
+
+
+
+Report step 10/12 at day 50/60, date = 20-Feb-2020
+
+Time step 0, stepsize 5 days, at day 50/55, date = 20-Feb-2020
+Well equation solution gets converged with 0 iterations
+Iter    MB(O)      MB(W)      MB(G)      CNV(O)     CNV(W)     CNV(G) 
+   0  8.530e-04  2.000e-07  0.000e+00  1.010e-03  5.712e-06  0.000e+00
+   1  1.019e-06  7.006e-09  0.000e+00  1.551e-04  3.662e-08  0.000e+00
+   2  8.752e-08  2.055e-11  0.000e+00  1.584e-06  3.746e-10  0.000e+00
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+                                                  ===================================================
+                                                  :                   Field Totals                  :
+                                                  :      PAV  =        242.13 BARSA                 :
+                                                  :      PORV =       6672062   RM3                 :
+                                                  : Pressure is weighted by hydrocarbon pore volume :
+                                                  : Porv volumes are taken at reference conditions  :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5282619             0       5282619:      1302041   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+                                                  ===================================================
+                                                  :        FIPNUM report region   1                 :
+                                                  :      PAV  =        242.13 BARSA                 :
+                                                  :      PORV =       6672062   RM3                 :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5282619             0       5282619:      1302041   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+======================================================= PRODUCTION REPORT =======================================================
+:  WELL  :  LOCATION :CTRL:    OIL    :   WATER   :    GAS    :   FLUID   :   WATER   : GAS/OIL  :  WAT/GAS   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  :MODE:    RATE   :   RATE    :    RATE   :  RES.VOL. :    CUT    :  RATIO   :   RATIO    : CON.PR.: BLK.PR.:
+:        :           :    :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  SCM/SCM  :  SCM/SCM :  SCM/SCM   :  BARSA :  BARSA :
+=================================================================================================================================
+
+:   FIELD:           :    :        0.0:        0.0:        0.0:        0.0:      0.000:      0.00:        -nan:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      G1:           :    :     1128.0:        0.3:        0.0:     1136.6:      0.000:      0.00:3372255730195848464305488526311424.0000:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      P1:   15,   11: BHP:     1128.0:        0.3:        0.0:     1136.6:      0.000:      0.00:3372255730195848464305488526311424.0000:   200.0:     0.0: 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+=================================================== INJECTION REPORT ========================================
+:  WELL  :  LOCATION : CTRL : CTRL : CTRL :    OIL    :   WATER   :    GAS    :   FLUID   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  : MODE : MODE : MODE :    RATE   :   RATE    :    RATE   :  RES.VOL. : CON.PR.: BLK.PR.:
+:        :           : OIL  : WAT  : GAS  :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  BARSA :  BARSA :
+==============================================================================================================
+
+:   FIELD:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+:      G1:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+=================================================== CUMULATIVE PRODUCTION/INJECTION REPORT =========================================
+:  WELL  :  LOCATION :  WELL  :CTRL:    OIL    :   WATER   :    GAS    :   Prod    :    OIL    :   WATER   :    GAS    :   INJ     :
+:  NAME  :  (I,J,K)  :  TYPE  :MODE:    PROD   :   PROD    :    PROD   :  RES.VOL. :    INJ    :   INJ     :    INJ    :  RES.VOL. :
+:        :           :        :    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :
+====================================================================================================================================
+
+:   FIELD:           :        :    :        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      G1:           :        :    :       91.3:        0.0:        0.0:       95.6:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      P1:   15,   11:    PROD: BHP:       91.3:        0.0:        0.0:       95.6:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+Overall linear iterations used: 70
+ Newton its= 2, linearizations= 3 (0.1sec), linear its= 70 (0.2sec)
+Sub steps started at time = 50 (days)
+ step[ 0 ] = 5 (days)
+sub steps end time = 55 (days)
+Suggested next step size = 14.815 (days)
+
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+Restart file written for report step: 10/12.  Date: 2020/02/20
+
+                              **************************************************************************
+  Balance  at        55  Days *           RIENM_CORP - CASE 1                                          *
+  Report   11    25 Feb 2020  *                                             Flow  version     2020.10  *
+                              **************************************************************************
+
+Time step took 2.511040 seconds; total solver time 29.808593 seconds.
+
+
+---------------    Simulation step number 11    ---------------
+      Current time (days)     55
+      Current stepsize (days) 5
+      Total time (days)       60
+
+
+
+Report step 11/12 at day 55/60, date = 25-Feb-2020
+
+Time step 0, stepsize 5 days, at day 55/60, date = 25-Feb-2020
+Well equation solution gets converged with 0 iterations
+Iter    MB(O)      MB(W)      MB(G)      CNV(O)     CNV(W)     CNV(G) 
+   0  7.782e-04  1.823e-07  0.000e+00  9.264e-04  5.648e-06  0.000e+00
+   1  9.906e-07  5.857e-09  0.000e+00  1.684e-04  4.112e-08  0.000e+00
+   2  4.872e-08  1.140e-11  0.000e+00  9.590e-07  2.267e-10  0.000e+00
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+                                                  ===================================================
+                                                  :                   Field Totals                  :
+                                                  :      PAV  =       238.325 BARSA                 :
+                                                  :      PORV =       6671681   RM3                 :
+                                                  : Pressure is weighted by hydrocarbon pore volume :
+                                                  : Porv volumes are taken at reference conditions  :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5277933             0       5277933:      1302040   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+                                                  ===================================================
+                                                  :        FIPNUM report region   1                 :
+                                                  :      PAV  =       238.325 BARSA                 :
+                                                  :      PORV =       6671681   RM3                 :
+                         :--------------- Oil    SM3 ---------------:-- Wat    SM3 --:--------------- Gas    SM3 ---------------:
+                         :      Liquid        Vapour        Total   :      Total     :      Free        Dissolved       Total   :
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Currently   in place    :       5277933             0       5277933:      1302040   :             0             0             0:
+:------------------------:------------------------------------------:----------------:------------------------------------------:
+:Originally  in place    :       5374874             0       5374874:      1302062   :             0             0             0:
+:========================:==========================================:================:==========================================:
+
+======================================================= PRODUCTION REPORT =======================================================
+:  WELL  :  LOCATION :CTRL:    OIL    :   WATER   :    GAS    :   FLUID   :   WATER   : GAS/OIL  :  WAT/GAS   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  :MODE:    RATE   :   RATE    :    RATE   :  RES.VOL. :    CUT    :  RATIO   :   RATIO    : CON.PR.: BLK.PR.:
+:        :           :    :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  SCM/SCM  :  SCM/SCM :  SCM/SCM   :  BARSA :  BARSA :
+=================================================================================================================================
+
+:   FIELD:           :    :        0.0:        0.0:        0.0:        0.0:      0.000:      0.00:        -nan:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      G1:           :    :     1028.3:        0.2:        0.0:     1037.1:      0.000:      0.00:751284164566645460384955555320430592.0000:        :        : 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+:      P1:   15,   11: BHP:     1028.3:        0.2:        0.0:     1037.1:      0.000:      0.00:751284164566645460384955555320430592.0000:   200.0:     0.0: 
+:--------:-----------:----:-----------:-----------:-----------:-----------:-----------:----------:------------:--------:--------:
+
+=================================================== INJECTION REPORT ========================================
+:  WELL  :  LOCATION : CTRL : CTRL : CTRL :    OIL    :   WATER   :    GAS    :   FLUID   : BHP OR : THP OR :
+:  NAME  :  (I,J,K)  : MODE : MODE : MODE :    RATE   :   RATE    :    RATE   :  RES.VOL. : CON.PR.: BLK.PR.:
+:        :           : OIL  : WAT  : GAS  :  SCM/DAY  :  SCM/DAY  :  SCM/DAY  :  RCM/DAY  :  BARSA :  BARSA :
+==============================================================================================================
+
+:   FIELD:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+:      G1:           :      :      :      :        0.0:        0.0:        0.0:        0.0:        :        : 
+:--------:-----------:------:------:------:------------:----------:-----------:-----------:--------:--------: 
+
+=================================================== CUMULATIVE PRODUCTION/INJECTION REPORT =========================================
+:  WELL  :  LOCATION :  WELL  :CTRL:    OIL    :   WATER   :    GAS    :   Prod    :    OIL    :   WATER   :    GAS    :   INJ     :
+:  NAME  :  (I,J,K)  :  TYPE  :MODE:    PROD   :   PROD    :    PROD   :  RES.VOL. :    INJ    :   INJ     :    INJ    :  RES.VOL. :
+:        :           :        :    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :    MSCM   :   MSCM    :    MMSCM  :   MRCM    :
+====================================================================================================================================
+
+:   FIELD:           :        :    :        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      G1:           :        :    :       96.4:        0.0:        0.0:      100.8:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+:      P1:   15,   11:    PROD: BHP:       96.4:        0.0:        0.0:      100.8:        0.0:        0.0:        0.0:        0.0: 
+:--------:-----------:--------:----:------------:----------:-----------:-----------:------------:----------:-----------:-----------: 
+
+Overall linear iterations used: 84
+ Newton its= 2, linearizations= 3 (0.1sec), linear its= 84 (0.3sec)
+Sub steps started at time = 55 (days)
+ step[ 0 ] = 5 (days)
+sub steps end time = 60 (days)
+Suggested next step size = 15 (days)
+
+Keyword 'RS' is unhandled for output to file.
+Keyword 'WELLS' is unhandled for output to file.
+Restart file written for report step: 11/12.  Date: 2020/02/25
+
+                              **************************************************************************
+  Balance  at        60  Days *           RIENM_CORP - CASE 1                                          *
+  Report   12    01 Mar 2020  *                                             Flow  version     2020.10  *
+                              **************************************************************************
+
+Time step took 2.563818 seconds; total solver time 32.372411 seconds.
+Restart file written for report step: 12/12.  Date: 2020/03/01
+
+
+================    End of simulation     ===============
+
+Number of MPI processes:         1
+Threads per MPI process:         2
+Total time (seconds):           34.95 
+Solver time (seconds):          32.37 
+ Assembly time (seconds):        1.19 (Failed: 0.0; 0.0%)
+   Well assembly (seconds):      0.09 (Failed: 0.0; 0.0%)
+ Linear solve time (seconds):    3.67 (Failed: 0.0; 0.0%)
+   Linear setup (seconds):       0.26 (Failed: 0.0; 0.0%)
+ Update time (seconds):          0.54 (Failed: 0.0; 0.0%)
+ Output write time (seconds):   29.39
+Overall Well Iterations:         0    (Failed:   0; -nan%)
+Overall Linearizations:         47    (Failed:   0; 0.0%)
+Overall Newton Iterations:      33    (Failed:   0; 0.0%)
+Overall Linear Iterations:    1084    (Failed:   0; 0.0%)
+
+
+
+Error summary:
+Warnings          98
+Info              319
+Errors            0
+Bugs              0
+Debug             126
+Problems          0
+
